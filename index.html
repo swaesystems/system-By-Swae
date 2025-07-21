@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Luma Aesthetics | Home</title>
+  <meta name="description" content="Luxury AI-powered med spa experience. Reveal your radiance with Luma Aesthetics.">
+  <meta name="keywords" content="med spa, aesthetics, skincare, AI, botox, facial, booking">
+  <meta name="author" content="Swae Systems">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #ffffff;
+      color: #111;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #ffffff;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 20px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      z-index: 999;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: #000;
+    }
+
+    nav a {
+      margin-left: 24px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #000;
+    }
+
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/hero-bg.jpg') no-repeat center center/cover;
+      height: 100vh;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 100px 20px 50px;
+    }
+
+    .hero h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      max-width: 600px;
+    }
+
+    .btn {
+      margin-top: 30px;
+      padding: 12px 30px;
+      background: #000;
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #333;
+    }
+
+    .services {
+      padding: 100px 20px 50px;
+      background: #fff;
+      text-align: center;
+    }
+
+    .services h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      margin-bottom: 40px;
+      color: #111;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      background: #f7f7f7;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      padding: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .service-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .service-card h4 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #000;
+    }
+
+    .service-card p {
+      font-size: 15px;
+      color: #555;
+    }
+
+    .btn-book {
+      margin-top: 50px;
+      padding: 14px 30px;
+      background: #000;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .btn-book:hover {
+      background: #333;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      background: #f0f0f0;
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .testimonials h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      margin-bottom: 40px;
+      color: #111;
+    }
+
+    .testimonial-slider {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding-bottom: 20px;
+    }
+
+    .testimonial {
+      flex: 0 0 80%;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      scroll-snap-align: center;
+    }
+
+    .testimonial p {
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+
+    .testimonial span {
+      font-weight: bold;
+      color: #000;
+    }
+
+    footer {
+      background: #000;
+      color: #fff;
+      padding: 30px 20px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    #chat-bubble {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #000;
+      color: white;
+      padding: 14px 20px;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: background 0.3s ease;
+    }
+
+    #chat-bubble:hover {
+      background: #333;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        margin-top: 10px;
+      }
+
+      .hero h2 {
+        font-size: 36px;
+      }
+
+      .hero p {
+        font-size: 18px;
+      }
+
+      .services h3 {
+        font-size: 28px;
+      }
+
+      .testimonial {
+        flex: 0 0 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Luma Aesthetics</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="contact.html">Contact</a>
+      <a href="faq.html">FAQ</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Reveal Your Radiance</h2>
+    <p>Where modern aesthetics meet elite beauty. Powered by AI. Designed for results.</p>
+    <button class="btn-book" onclick="openCalendly()">Book Free Consultation</button>
+  </section>
+
+  <section class="services">
+    <h3>Our Signature Treatments</h3>
+    <div class="service-grid">
+      <div class="service-card">
+        <img src="images/botox.jpg" alt="Botox & Fillers">
+        <h4>Botox & Fillers</h4>
+        <p>Refine and rejuvenate your features with expert injection treatments.</p>
+      </div>
+      <div class="service-card">
+        <img src="images/laser.jpg" alt="Laser Resurfacing">
+        <h4>Laser Resurfacing</h4>
+        <p>Eliminate imperfections and reveal clearer, smoother skin underneath.</p>
+      </div>
+      <div class="service-card">
+        <img src="images/hydrafacial.jpg" alt="Hydrafacial">
+        <h4>Hydrafacial Glow</h4>
+        <p>Hydrate, exfoliate, and renew — all in one high-tech facial session.</p>
+      </div>
+      <div class="service-card">
+        <img src="images/body.jpg" alt="Body Contouring">
+        <h4>Body Contouring</h4>
+        <p>Target stubborn fat and reshape your body with non-invasive tech.</p>
+      </div>
+    </div>
+  </section> 
+    <section class="testimonials">
+    <h3>What Our Clients Say</h3>
+    <div class="testimonial-slider">
+      <div class="testimonial">
+        <p>“Luma made me feel beautiful again. The results were instant!”</p>
+        <span>- Ashley M.</span>
+      </div>
+      <div class="testimonial">
+        <p>“Sleek clinic, smart staff, and my skin has never looked better.”</p>
+        <span>- Nicole R.</span>
+      </div>
+      <div class="testimonial">
+        <p>“The AI system helped me find the perfect treatment fast. 10/10.”</p>
+        <span>- Tiffany G.</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Luma Aesthetics. Designed by Swae Systems.
+  </footer>
+
+  <!-- Chat Bubble -->
+  <div id="chat-bubble" onclick="tidioChatApi.open()">Chat with us 💬</div>
+
+  <!-- Calendly Embed -->
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+  <script>
+    function openCalendly() {
+      Calendly.initPopupWidget({ url: 'https://calendly.com/demo-booking/15min' }); // Replace with your real link
+    }
+  </script>
+
+  <!-- Tidio Chat Placeholder -->
+  <script>
+    // Replace this with your real Tidio code once ready
+    window.tidioChatApi = {
+      open: function() {
+        alert("Live chat coming soon. This will launch Tidio.");
+      }
+    };
+  </script>
+
+</body>
+</html>
