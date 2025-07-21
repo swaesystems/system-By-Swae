@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Services | Luma Aesthetics</title>
+  <meta name="description" content="Explore all premium med spa services offered by Luma Aesthetics. AI-powered skincare, facials, and body sculpting.">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fff;
+      color: #111;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #ffffff;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 20px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      z-index: 999;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: #000;
+    }
+
+    nav a {
+      margin-left: 24px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #000;
+    }
+
+    .services-hero {
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/services-hero.jpg') no-repeat center center/cover;
+      height: 60vh;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .services-hero h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      animation: fadeIn 1s ease;
+    }
+
+    .services-section {
+      padding: 90px 20px 50px;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .services-section h3 {
+      font-size: 28px;
+      margin-bottom: 40px;
+      color: #000;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+    }
+
+    .service-card {
+      background: #f7f7f7;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      padding: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .service-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .service-card h4 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #000;
+    }
+
+    .service-card p {
+      font-size: 15px;
+      color: #555;
+    }
+
+    .btn {
+      margin-top: 50px;
+      padding: 14px 30px;
+      background: #000;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #333;
+    }
+
+    footer {
+      background: #000;
+      color: #fff;
+      padding: 30px 20px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    #chat-bubble {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #000;
+      color: white;
+      padding: 14px 20px;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: background 0.3s ease;
+    }
+
+    #chat-bubble:hover {
+      background: #333;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        margin-top: 10px;
+      }
+
+      .services-hero h2 {
+        font-size: 32px;
+      }
+
+      .services-section h3 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Luma Aesthetics</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <section class="services-hero">
+    <h2>Our Services</h2>
+  </section>
+
+  <section class="services-section">
+    <h3>Signature Treatments Designed to Elevate Your Beauty</h3>
+    <div class="service-grid">
+      <div class="service-card">
+        <img src="images/botox.jpg" alt="Botox & Fillers">
+        <h4>Botox & Fillers</h4>
+        <p>Smooth fine lines and restore youth with our expert injectables.</p>
+      </div>
+      <div class="service-card">
+        <img src="images/laser.jpg" alt="Laser Resurfacing">
+        <h4>Laser Resurfacing</h4>
+        <p>Erase imperfections and reveal a glowing, even-toned complexion.</p>
+      </div>
+      <div class="service-card">
+        <img src="images/hydrafacial.jpg" alt="Hydrafacial Glow">
+        <h4>Hydrafacial Glow</h4>
+        <p>Hydrate, exfoliate, and rejuvenate in one powerful facial experience.</p>
+      </div>
+      <div class="service-card">
+        <img src="images/body.jpg" alt="Body Contouring">
+        <h4>Body Contouring</h4>
+        <p>Target stubborn areas and sculpt your ideal silhouette effortlessly.</p>
+      </div>
+      <div class="service-card">
+        <img src="images/microneedling.jpg" alt="Microneedling">
+        <h4>Microneedling</h4>
+        <p>Boost collagen, improve texture, and reduce scars with precision.</p>
+      </div>
+      <div class="service-card">
+        <img src="images/led.jpg" alt="LED Light Therapy">
+        <h4>LED Light Therapy</h4>
+        <p>Balance skin tone and calm inflammation using LED-powered science.</p>
+      </div>
+    </div>
+
+    <button class="btn" onclick="alert('Booking system coming soon!')">Book Your Consultation</button>
+  </section>
+
+  <footer>
+    © 2025 Luma Aesthetics. Designed by Swae Systems.
+  </footer>
+
+  <div id="chat-bubble" onclick="alert('Chat widget coming soon!')">Chat with us 💬</div>
+
+</body>
+</html>
