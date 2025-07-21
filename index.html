@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Luma Aesthetics | Home</title>
+  <link rel="icon" href="favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
+    body { font-family: 'Poppins', sans-serif; background: #fff0f6; color: #222; }
+    header {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
+      padding: 15px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      z-index: 1000;
+      transition: background 0.3s ease;
+    }
+    header.scrolled { background: #fff; }
+    .logo { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; }
+    nav ul {
+      list-style: none; display: flex; gap: 25px;
+    }
+    nav a {
+      text-decoration: none; color: #222; font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav a:hover { color: #e91e63; }
+    .hamburger {
+      display: none; flex-direction: column; cursor: pointer; gap: 5px;
+    }
+    .hamburger div {
+      width: 25px; height: 3px; background: #222;
+    }
+    .mobile-menu {
+      display: none; flex-direction: column;
+      background: #fff; position: absolute; top: 60px; right: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      border-radius: 8px; overflow: hidden;
+    }
+    .mobile-menu a {
+      padding: 12px 20px; border-bottom: 1px solid #eee;
+      text-decoration: none; color: #222;
+    }
+    .hero {
+      background: linear-gradient(to bottom right, rgba(0,0,0,0.5), rgba(0,0,0,0.2)),
+                  url('hero-bg.jpg') no-repeat center center/cover;
+      color: white; text-align: center; padding: 160px 30px 100px;
+    }
+    .hero h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px; margin-bottom: 20px;
+      animation: fadeInDown 1s ease-out;
+    }
+    .hero p { font-size: 18px; max-width: 600px; margin: auto; animation: fadeIn 2s ease-in; }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .section { padding: 80px 30px; text-align: center; }
+    .section h3 {
+      font-size: 32px; margin-bottom: 40px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .services, .testimonial-slider, .instagram-preview {
+      display: flex; flex-wrap: wrap; gap: 30px; justify-content: center;
+    }
+    .service-card {
+      width: 280px; background: white; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s;
+    }
+    .service-card:hover {
+      transform: translateY(-8px); box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    .service-card img {
+      width: 100%; height: 200px; object-fit: cover;
+    }
+    .service-card h4 { margin: 15px 0 5px; font-size: 20px; }
+    .service-card p { padding: 0 20px 20px; font-size: 15px; }
+
+    .testimonials .testimonial {
+      background: #fff; padding: 20px; border-radius: 10px;
+      width: 300px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .testimonials .testimonial:hover { transform: scale(1.03); }
+
+    .trust {
+      display: flex; justify-content: center; gap: 20px; font-weight: bold;
+      font-size: 16px; margin: 30px 0;
+    }
+
+    .instagram-preview img {
+      width: 180px; height: 180px; border-radius: 10px; object-fit: cover;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .floating-book {
+      display: none;
+      position: fixed; bottom: 20px; right: 20px;
+      background: #e91e63; color: white; padding: 14px 22px;
+      font-weight: bold; text-decoration: none; border-radius: 30px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2); z-index: 1001;
+    }
+
+    footer {
+      background: #111; color: white; text-align: center;
+      padding: 30px 20px; font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      nav ul { display: none; }
+      .hamburger { display: flex; }
+      .floating-book { display: inline-block; }
+    }
+  </style>
+</head>
+<body>
+
+<header id="navbar">
+  <div class="logo">Luma Aesthetics</div>
+  <nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#services">Treatments</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="https://calendly.com">Book</a></li>
+    </ul>
+  </nav>
+  <div class="hamburger" onclick="toggleMenu()">
+    <div></div><div></div><div></div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#">Home</a>
+    <a href="#services">Treatments</a>
+    <a href="faq.html">FAQ</a>
+    <a href="#contact">Contact</a>
+    <a href="https://calendly.com">Book</a>
+  </div>
+</header> 
+ <section class="hero">
+  <h2>Enhance Your Natural Beauty</h2>
+  <p>Premium skincare, facial rejuvenation, and confidence-boosting treatments.</p>
+</section>
+
+<section class="section" id="services">
+  <h3>Our Treatments</h3>
+  <div class="services">
+    <div class="service-card" data-aos="fade-up">
+      <img src="facial.jpg" alt="Facial Treatment">
+      <h4>Hydrafacial Glow</h4>
+      <p>Deeply cleanse and hydrate your skin for a fresh, radiant glow.</p>
+    </div>
+    <div class="service-card" data-aos="fade-up">
+      <img src="laser.jpg" alt="Laser Treatment">
+      <h4>Laser Resurfacing</h4>
+      <p>Reduce fine lines, pigmentation, and acne scars painlessly.</p>
+    </div>
+    <div class="service-card" data-aos="fade-up">
+      <img src="botox.jpg" alt="Botox">
+      <h4>Botox & Fillers</h4>
+      <p>Smooth wrinkles and restore youthful contours in minutes.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section testimonials">
+  <h3>Client Love</h3>
+  <div class="testimonial-slider">
+    <div class="testimonial" data-aos="fade-up">"The team made me feel so confident. 10/10!"</div>
+    <div class="testimonial" data-aos="fade-up">"Best facial I've had in years!"</div>
+    <div class="testimonial" data-aos="fade-up">"I saw results immediately after my treatment."</div>
+  </div>
+</section>
+
+<section class="section">
+  <h3>Why Choose Us?</h3>
+  <div class="trust">
+    <span>✅ FDA-Approved</span>
+    <span>🏆 Top Spa 2024</span>
+    <span>💎 Certified Experts</span>
+  </div>
+</section>
+
+<section class="section">
+  <h3>Meet Our Team</h3>
+  <div class="services">
+    <div class="service-card" data-aos="fade-up">
+      <img src="aesthetician.jpg" alt="Lead Aesthetician">
+      <h4>Maria Lopez</h4>
+      <p>Lead Aesthetician with 10+ years of advanced skincare experience.</p>
+    </div>
+    <div class="service-card" data-aos="fade-up">
+      <img src="nurse.jpg" alt="Nurse Injector">
+      <h4>Jen Park</h4>
+      <p>Board-certified nurse injector specializing in Botox and dermal fillers.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section instagram-preview">
+  <h3>Latest Looks</h3>
+  <div>
+    <img src="insta1.jpg" alt="Preview 1" data-aos="fade-up">
+    <img src="insta2.jpg" alt="Preview 2" data-aos="fade-up">
+    <img src="insta3.jpg" alt="Preview 3" data-aos="fade-up">
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <h3>Contact Us</h3>
+  <form style="max-width:500px;margin:auto;text-align:left;">
+    <label>Name:</label>
+    <input type="text" style="width:100%;padding:10px;margin:8px 0;" placeholder="Your Name">
+    <label>Email:</label>
+    <input type="email" style="width:100%;padding:10px;margin:8px 0;" placeholder="Your Email">
+    <label>Message:</label>
+    <textarea style="width:100%;padding:10px;margin:8px 0;" rows="5" placeholder="How can we help?"></textarea>
+    <button style="padding:12px 25px;background:#e91e63;color:white;border:none;border-radius:6px;">Send Message</button>
+  </form>
+</section>
+
+<div class="floating-book">
+  <a href="https://calendly.com" style="color:white;text-decoration:none;">Book Now</a>
+</div>
+
+<footer>
+  &copy; 2025 Luma Aesthetics. Built by Swae Systems.
+</footer>
+
+<!-- Scripts -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init();
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+  }
+  window.addEventListener('scroll', () => {
+    const header = document.getElementById('navbar');
+    header.classList.toggle('scrolled', window.scrollY > 50);
+  });
+</script>
+<!-- Tidio Placeholder -->
+<script>
+  // Replace this with your actual Tidio embed code
+  console.log('Tidio widget placeholder active');
+</script>
+
+</body>
+</html> 
