@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About | Luma Aesthetics</title>
+  <meta name="description" content="Learn about Luma Aesthetics – where beauty meets innovation.">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #fff0f6;
+      color: #333;
+    }
+
+    header {
+      background: white;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 999;
+      padding: 20px 40px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      color: #e91e63;
+      font-size: 26px;
+    }
+
+    nav a {
+      margin: 0 12px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: #e91e63;
+    }
+
+    .about-hero {
+      background: linear-gradient(rgba(255,240,246,0.9), rgba(255,240,246,0.9)), url('images/about-hero.jpg') no-repeat center center/cover;
+      height: 60vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 100px 20px 60px;
+    }
+
+    .about-hero h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      color: #e91e63;
+    }
+
+    .about-content {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .about-content h3 {
+      font-size: 28px;
+      color: #c2185b;
+      margin-bottom: 20px;
+    }
+
+    .about-content p {
+      font-size: 17px;
+      line-height: 1.7;
+      color: #444;
+      margin-bottom: 30px;
+    }
+
+    .about-image {
+      width: 100%;
+      max-width: 900px;
+      margin: 30px auto;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    footer {
+      padding: 40px 20px;
+      background: #f8eaf0;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    #chat-bubble {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #e91e63;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    @media (max-width: 768px) {
+      .about-hero h2 {
+        font-size: 32px;
+      }
+
+      .about-content h3 {
+        font-size: 24px;
+      }
+
+      .about-content p {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Luma Aesthetics</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <section class="about-hero">
+    <h2>About Luma Aesthetics</h2>
+  </section>
+
+  <section class="about-content">
+    <h3>Where Innovation Meets Self-Care</h3>
+    <p>Luma Aesthetics was founded on a single vision: to merge high-end beauty treatments with cutting-edge AI technology. Our team of licensed professionals is trained in the latest medical aesthetic techniques, delivering world-class service with a personal touch.</p>
+    <p>Whether you're here for a refresh or a full transformation, we believe every client deserves a luxurious, stress-free experience that leaves them glowing — inside and out.</p>
+
+    <div class="about-image">
+      <img src="images/about-staff.jpg" alt="Luma Aesthetics Staff">
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Luma Aesthetics. Powered by Swae Systems.
+  </footer>
+
+  <div id="chat-bubble" onclick="alert('Chat widget coming soon!')">Chat with us 💬</div>
+
+</body>
+</html>
