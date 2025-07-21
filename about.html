@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About | Luma Aesthetics</title>
+  <meta name="description" content="About Luma Aesthetics – premium med spa powered by AI. Discover our mission and vision.">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fff;
+      color: #111;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #ffffff;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 20px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      z-index: 999;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: #000;
+    }
+
+    nav a {
+      margin-left: 24px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #000;
+    }
+
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/about-hero.jpg') no-repeat center center/cover;
+      height: 60vh;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .hero h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      animation: fadeIn 1s ease;
+    }
+
+    .about-section {
+      max-width: 1000px;
+      margin: 80px auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .about-section h3 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #000;
+    }
+
+    .about-section p {
+      font-size: 16px;
+      color: #444;
+      margin-bottom: 30px;
+    }
+
+    .about-image {
+      width: 100%;
+      max-width: 900px;
+      margin: 30px auto;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    footer {
+      background: #000;
+      color: #fff;
+      padding: 30px 20px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    #chat-bubble {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #000;
+      color: white;
+      padding: 14px 20px;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: background 0.3s ease;
+    }
+
+    #chat-bubble:hover {
+      background: #333;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        margin-top: 10px;
+      }
+
+      .hero h2 {
+        font-size: 32px;
+      }
+
+      .about-section h3 {
+        font-size: 24px;
+      }
+
+      .about-section p {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Luma Aesthetics</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>About Luma Aesthetics</h2>
+  </section>
+
+  <section class="about-section">
+    <h3>Where Innovation Meets Self-Care</h3>
+    <p>Luma Aesthetics was founded to elevate modern skincare through innovation, luxury, and care. We believe beauty should feel effortless — and that your med spa experience should reflect the same energy you bring to life: clean, smart, and powerful.</p>
+    <p>Our AI-powered tools, paired with cutting-edge aesthetic services, help our clients feel confident, radiant, and in control. From facial treatments to body sculpting, we deliver elite results with precision and passion.</p>
+
+    <div class="about-image">
+      <img src="images/about-staff.jpg" alt="Luma Aesthetics Team">
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Luma Aesthetics. Designed by Swae Systems.
+  </footer>
+
+  <div id="chat-bubble" onclick="alert('Chat widget coming soon!')">Chat with us 💬</div>
+
+</body>
+</html>
