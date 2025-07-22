@@ -358,11 +358,23 @@
     <h2 class="section-title">Our Treatments</h2>
     <p class="section-subtitle">Premium procedures delivered by licensed experts</p>
     <div class="card-grid">
-      <div class="glow-card">Botox & Fillers</div>
-      <div class="glow-card">Laser Hair Removal</div>
-      <div class="glow-card">Facials & Skin Care</div>
-      <div class="glow-card">Body Contouring</div>
-    </div>
+  <div class="glow-card">
+    <img src="botox-icon.PNG" alt="Botox & Fillers" style="height:60px; margin-bottom:15px;" />
+    <div>Botox & Fillers</div>
+  </div>
+  <div class="glow-card">
+    <img src="laser-icon.PNG" alt="Laser Hair Removal" style="height:60px; margin-bottom:15px;" />
+    <div>Laser Hair Removal</div>
+  </div>
+  <div class="glow-card">
+    <img src="facial-icon.PNG" alt="Facials & Skin Care" style="height:60px; margin-bottom:15px;" />
+    <div>Facials & Skin Care</div>
+  </div>
+  <div class="glow-card">
+    <img src="contour-icon.PNG" alt="Body Contouring" style="height:60px; margin-bottom:15px;" />
+    <div>Body Contouring</div>
+  </div>
+</div>
   </section>
 
   <section data-aos="fade-up">
@@ -433,7 +445,17 @@
     }
 
     animate();
-  </script>
+  </script> <script>
+  function toggleMobileNav() {
+    const nav = document.getElementById("mobileNav");
+    if (nav.style.display === "flex") {
+      nav.style.display = "none";
+    } else {
+      nav.style.display = "flex";
+      nav.style.flexDirection = "column";
+    }
+  }
+</script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>AOS.init({ once: true });</script>
 
