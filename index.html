@@ -98,17 +98,43 @@
     }
 
     .mobile-nav {
-      display: none;
-      flex-direction: column;
-      background: white;
-      position: absolute;
-      top: 70px;
-      right: 40px;
-      border: 1px solid #ddd;
-      padding: 20px;
-      gap: 15px;
-      z-index: 1000;
-    }
+  display: none;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.95);
+  position: absolute;
+  top: 70px;
+  right: 40px;
+  border-radius: 12px;
+  padding: 25px;
+  gap: 20px;
+  z-index: 1000;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12px);
+  animation: fadeSlideDown 0.3s ease-in-out;
+}
+  @keyframes fadeSlideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mobile-nav a {
+  color: #333;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  transition: color 0.3s ease;
+}
+
+.mobile-nav a:hover {
+  color: #e4a2b1;
+}
 
     .hero {
       height: 100vh;
