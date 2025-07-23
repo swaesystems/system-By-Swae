@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Luma Aesthetics | Luxury Med Spa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      font-family: 'Poppins', sans-serif;
+      background: #fff;
+      color: #111;
+      scroll-behavior: smooth;
+    }
+
+    body.fade-in {
+      animation: fadeIn 1s ease-in-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    #loader {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    #loader h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      color: #e4a2b1;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.5; }
+      50% { opacity: 1; }
+      100% { opacity: 0.5; }
+    }
+
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 40px;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(14px);
+      z-index: 1000;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: #000;
+    }
+
+    nav {
+      display: flex;
+      gap: 30px;
+    }
+
+    nav a {
+      color: #333;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #e4a2b1;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .hamburger div {
+      width: 25px;
+      height: 2.5px;
+      background-color: #333;
+    }
+
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 70px;
+      right: 40px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      z-index: 999;
+      animation: fadeSlideDown 0.3s ease-in-out;
+    }
+
+    @keyframes fadeSlideDown {
+      0% { opacity: 0; transform: translateY(-10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .mobile-nav a {
+      color: #333;
+      text-decoration: none;
+      font-size: 16px;
+      margin: 8px 0;
+      transition: color 0.3s ease;
+    }
+
+    .mobile-nav a:hover {
+      color: #e4a2b1;
+    }
+
+    .hero {
+      height: 100vh;
+      background: #000 url('hero-cover.jpg') center center/cover no-repeat;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 1;
+    }
+
+    canvas#bg {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 20px;
+      max-width: 700px;
+    }
+
+    .hero-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 54px;
+      margin-bottom: 20px;
+    }
+
+    .hero-content p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    .hero-content a {
+      padding: 12px 30px;
+      background: #e4a2b1;
+      color: white;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .hero-content a:hover {
+      background: #111;
+      color: #fff;
+      box-shadow: 0 0 10px #e4a2b1;
+    }
+
+    section {
+      padding: 100px 40px;
+      text-align: center;
+      background: #fff;
+    }
+
+    .section-title {
+      font-size: 34px;
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 20px;
+      color: #000;
+    }
+
+    .section-subtitle {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 50px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .glow-card {
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 6px 22px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .glow-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 12px 30px rgba(228, 162, 177, 0.3);
+    }
+
+    .glow-card img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+    }
+
+    .glow-card h3 {
+      padding: 20px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+        /* --- Continued from Part 1 --- */
+
+    footer {
+      background: #111;
+      color: white;
+      padding: 60px 40px;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+      .hero-content h1 {
+        font-size: 36px;
+      }
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div id="loader"><h1>Loading Luxury...</h1></div>
+
+<header>
+  <div class="logo">Luma Aesthetics</div>
+  <nav>
+    <a href="#treatments">Treatments</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#vip">VIP</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="hamburger" onclick="toggleMobileNav()">
+    <div></div><div></div><div></div>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#treatments">Treatments</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#vip">VIP</a>
+    <a href="#contact">Contact</a>
+  </div>
+</header>
+
+<section class="hero">
+  <canvas id="bg"></canvas>
+  <div class="hero-content" data-aos="fade-up">
+    <h1>Reveal Your Radiance</h1>
+    <p>Luxury Med Spa Services Tailored For You</p>
+    <a href="#treatments">Book Now</a>
+  </div>
+</section>
+
+<section id="treatments" data-aos="fade-up">
+  <h2 class="section-title">Our Signature Treatments</h2>
+  <p class="section-subtitle">Explore our curated selection of med spa services</p>
+  <div class="card-grid">
+    <a href="botox.html" class="glow-card">
+      <img src="botox.jpg" alt="Botox & Fillers">
+      <h3>Botox & Fillers</h3>
+    </a>
+    <a href="facial.html" class="glow-card">
+      <img src="facial.jpg" alt="Facials">
+      <h3>Custom Facials</h3>
+    </a>
+    <a href="laser.html" class="glow-card">
+      <img src="laser.jpg" alt="Laser Treatment">
+      <h3>Laser Rejuvenation</h3>
+    </a>
+    <a href="peel.html" class="glow-card">
+      <img src="peel.jpg" alt="Chemical Peel">
+      <h3>Chemical Peels</h3>
+    </a>
+  </div>
+</section>
+
+<section id="testimonials" data-aos="fade-up" style="background: #f8f8f8;">
+  <h2 class="section-title" style="color:#000;">Testimonials</h2>
+  <div style="overflow: hidden; max-width: 1200px; margin: 0 auto;">
+    <div id="testimonialSlider" style="display: flex; gap: 30px; transition: transform 0.5s ease;">
+      <div class="glow-card" style="min-width: 320px; padding: 20px;">
+        <h3 style="font-size: 16px;">★★★★★</h3>
+        <p>"Best skin I've ever had. Their facials are magic!"</p>
+      </div>
+      <div class="glow-card" style="min-width: 320px; padding: 20px;">
+        <h3 style="font-size: 16px;">★★★★★</h3>
+        <p>"I always feel confident after every visit. Real luxury!"</p>
+      </div>
+      <div class="glow-card" style="min-width: 320px; padding: 20px;">
+        <h3 style="font-size: 16px;">★★★★★</h3>
+        <p>"Top-tier customer service and clean aesthetics. 10/10."</p>
+      </div>
+      <div class="glow-card" style="min-width: 320px; padding: 20px;">
+        <h3 style="font-size: 16px;">★★★★★</h3>
+        <p>"My favorite place to relax and feel pampered."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="vip" data-aos="fade-up" style="background: #e4a2b1; color: white;">
+  <h2 class="section-title">Join Our VIP List</h2>
+  <p class="section-subtitle">Be first to hear about exclusive deals and new services.</p>
+  <form style="max-width: 500px; margin: auto;">
+    <input type="email" placeholder="Enter your email" style="padding: 12px 20px; width: 80%; border-radius: 30px; border: none; margin-bottom: 20px;">
+    <br>
+    <button type="submit" style="padding: 12px 30px; background: white; color: #e4a2b1; border-radius: 30px; border: none; font-weight: 600;">Subscribe</button>
+  </form>
+</section>
+<section id="contact" data-aos="fade-up">
+  <h2 class="section-title">Contact Us</h2>
+  <p class="section-subtitle">We'd love to hear from you</p>
+  <form style="max-width: 600px; margin: auto;">
+    <input type="text" placeholder="Your Name" style="padding: 12px 20px; width: 100%; margin-bottom: 10px;">
+    <input type="email" placeholder="Your Email" style="padding: 12px 20px; width: 100%; margin-bottom: 10px;">
+    <textarea placeholder="Your Message" rows="5" style="padding: 12px 20px; width: 100%; margin-bottom: 10px;"></textarea>
+    <button type="submit" style="padding: 12px 30px; background: #e4a2b1; color: white; border: none; border-radius: 30px;">Send Message</button>
+  </form>
+</section>
+
+<footer>
+  <p>&copy; 2025 Luma Aesthetics. All rights reserved.</p>
+</footer>
+
+<!-- AOS Library -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+
+<!-- Testimonial Slider Auto-Scroll -->
+<script>
+  let slider = document.getElementById('testimonialSlider');
+  let scrollAmount = 0;
+  setInterval(() => {
+    if (!slider) return;
+    scrollAmount += 350;
+    if (scrollAmount >= slider.scrollWidth - slider.clientWidth) {
+      scrollAmount = 0;
+    }
+    slider.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+  }, 3000);
+</script>
+
+<!-- Hamburger Logic -->
+<script>
+  function toggleMobileNav() {
+    const nav = document.getElementById('mobileNav');
+    nav.classList.toggle('open');
+  }
+</script>
+
+<!-- Canvas Particle Background -->
+<script>
+  const canvas = document.getElementById('bg');
+  const ctx = canvas.getContext('2d');
+  let w, h;
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+  window.addEventListener("resize", resize);
+  resize();
+  const particles = [];
+  for (let i = 0; i < 100; i++) {
+    particles.push({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: Math.random() * 2 + 1,
+      dx: Math.random() - 0.5,
+      dy: Math.random() - 0.5
+    });
+  }
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    for (let p of particles) {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = "#ffffff33";
+      ctx.fill();
+      p.x += p.dx;
+      p.y += p.dy;
+      if (p.x < 0 || p.x > w) p.dx *= -1;
+      if (p.y < 0 || p.y > h) p.dy *= -1;
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+</script>
+
+<!-- Loader Script -->
+<script>
+  window.addEventListener("load", () => {
+    document.getElementById("loader").style.display = "none";
+  });
+</script>
+
+<!-- Chatbot Placeholder -->
+<script>
+  // Replace this with your Tidio or other chatbot code
+</script>
+
+</body>
+</html>
