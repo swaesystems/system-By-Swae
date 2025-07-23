@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Luma Aesthetics | Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Poppins', sans-serif; background: #fff; color: #111; scroll-behavior: smooth; }
+    header {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: rgba(255,255,255,0.95);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 15px 40px; z-index: 999; backdrop-filter: blur(10px);
+    }
+    header .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px; font-weight: 700; color: #000;
+    }
+    nav { display: flex; gap: 30px; }
+    nav a {
+      text-decoration: none; color: #333;
+      font-weight: 500; transition: 0.3s;
+    }
+    nav a:hover { color: #e4a2b1; }
+    .hero {
+      height: 100vh;
+      background: url('hero-bg.jpg') center center/cover no-repeat;
+      display: flex; justify-content: center; align-items: center;
+      text-align: center; color: white; position: relative;
+    }
+    .hero::after {
+      content: ""; position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.4); z-index: 1;
+    }
+    .hero-content {
+      position: relative; z-index: 2; max-width: 700px;
+      padding: 20px;
+    }
+    .hero-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 52px; margin-bottom: 20px;
+    }
+    .hero-content p {
+      font-size: 18px; margin-bottom: 30px;
+    }
+    .hero-content a {
+      padding: 12px 30px; background: #e4a2b1; color: white;
+      text-decoration: none; border-radius: 30px;
+      font-weight: 600; transition: 0.3s;
+    }
+    .hero-content a:hover {
+      background: #111; color: white;
+      box-shadow: 0 0 10px #e4a2b1;
+    }
+    section {
+      padding: 100px 40px;
+      text-align: center;
+    }
+    .section-title {
+      font-size: 36px;
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 20px;
+    }
+    .section-subtitle {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 50px;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px; max-width: 1200px; margin: auto;
+    }
+    .glow-card {
+      background: #fff; padding: 20px; border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+      transition: 0.3s; text-decoration: none; color: inherit;
+      border: 1px solid #eee;
+    }
+    .glow-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 30px rgba(228, 162, 177, 0.4);
+      border: 1px solid #e4a2b1;
+    }
+    .glow-card img {
+      width: 100%; height: 200px; object-fit: cover;
+      border-radius: 8px;
+    }
+    .glow-card h3 {
+      margin-top: 15px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+    .testimonial-slider {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 20px;
+      padding-bottom: 10px;
+      scroll-behavior: smooth;
+    }
+    .testimonial-slider::-webkit-scrollbar {
+      display: none;
+    }
+    .testimonial-card {
+      flex: 0 0 80%;
+      scroll-snap-align: center;
+      background: #fff;
+      border-radius: 12px;
+      padding: 30px;
+      border: 1px solid #eee;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    }
+    .trust-badges {
+      display: flex; justify-content: center;
+      gap: 40px; margin-top: 60px; flex-wrap: wrap;
+    }
+    .trust-badges img {
+      height: 40px; opacity: 0.7;
+    }
+    footer {
+      background: #111; color: white;
+      padding: 40px; text-align: center;
+      margin-top: 100px;
+    }
+    @media(max-width: 768px) {
+      .hero-content h1 { font-size: 34px; }
+      .testimonial-card { flex: 0 0 95%; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Luma Aesthetics</div>
+    <nav>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Where Luxury Meets Skin</h1>
+      <p>Experience cutting-edge beauty treatments tailored to you.</p>
+      <a href="contact.html">Book Now</a>
+    </div>
+  </div>
+
+  <section>
+    <h2 class="section-title">Our Treatments</h2>
+    <p class="section-subtitle">Explore our top services</p>
+    <div class="card-grid">
+      <a href="botox.html" class="glow-card">
+        <img src="treatment-botox-card.png" alt="Botox & Fillers">
+        <h3>Botox & Fillers</h3>
+      </a>
+      <a href="#" class="glow-card">
+        <img src="treatment-laser-card.png" alt="Laser Hair Removal">
+        <h3>Laser Hair Removal</h3>
+      </a>
+      <a href="#" class="glow-card">
+        <img src="treatment-facial-card.png" alt="Facials & Skin Care">
+        <h3>Facials & Skin Care</h3>
+      </a>
+      <a href="#" class="glow-card">
+        <img src="treatment-hydrafacial-card.png" alt="Hydrafacial">
+        <h3>Hydrafacial</h3>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Testimonials</h2>
+    <p class="section-subtitle">Real clients. Real results.</p>
+    <div class="testimonial-slider">
+      <div class="testimonial-card">"Absolutely stunning results, Luma made me feel brand new!"</div>
+      <div class="testimonial-card">"Best med spa in the area. Beautiful service, beautiful clinic."</div>
+      <div class="testimonial-card">"Professional, kind, and top-notch. My go-to place now!"</div>
+    </div>
+  </section>
+
+  <div class="trust-badges">
+    <img src="trust-hipaa.png" alt="HIPAA Compliant"/>
+    <img src="trust-certified.png" alt="Certified Professionals"/>
+    <img src="trust-google.png" alt="5-Star Google Rated"/>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Luma Aesthetics. Built by Swae Systems.</p>
+  </footer>
+</body>
+</html>
