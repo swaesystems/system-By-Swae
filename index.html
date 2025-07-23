@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Luma Aesthetics | Luxury Med Spa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      scroll-behavior: smooth;
+      font-family: 'Poppins', sans-serif;
+      background-color: #ffffff;
+      color: #111;
+    }
+
+    body.fade-in {
+      animation: fadeIn 1.2s ease-in-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    #loader {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    #loader h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      color: #e4a2b1;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.4; }
+      50% { opacity: 1; }
+      100% { opacity: 0.4; }
+    }
+
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(255,255,255,0.95);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      z-index: 999;
+      backdrop-filter: blur(10px);
+    }
+
+    header .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #000;
+    }
+
+    nav {
+      display: flex;
+      gap: 25px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #e4a2b1;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background-color: #333;
+    }
+
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      background: rgba(255, 255, 255, 0.95);
+      position: absolute;
+      top: 70px;
+      right: 40px;
+      border-radius: 12px;
+      padding: 25px;
+      gap: 20px;
+      z-index: 1000;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(12px);
+      animation: fadeSlideDown 0.3s ease-in-out;
+    }
+
+    @keyframes fadeSlideDown {
+      0% { opacity: 0; transform: translateY(-10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .mobile-nav a {
+      color: #333;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 500;
+      text-align: center;
+      transition: color 0.3s ease;
+    }
+
+    .mobile-nav a:hover {
+      color: #e4a2b1;
+    }
+
+    .hero {
+      height: 100vh;
+      background: #000 url('hero-cover.jpg') center center/cover no-repeat;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      color: white;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      padding: 20px;
+    }
+
+    .hero-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 52px;
+      margin-bottom: 20px;
+    }
+
+    .hero-content p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    .hero-content a {
+      padding: 12px 30px;
+      background: #e4a2b1;
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .hero-content a:hover {
+      background: #111;
+      color: #fff;
+      box-shadow: 0 0 10px #e4a2b1;
+    }
+
+    canvas#bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    section {
+      padding: 100px 40px;
+      text-align: center;
+      background: #fff;
+      clip-path: polygon(0 0, 100% 3%, 100% 97%, 0 100%);
+    }
+
+    .section-title {
+      font-size: 36px;
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 20px;
+    }
+
+    .section-subtitle {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 50px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .glow-card {
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 6px 22px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .glow-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 12px 30px rgba(228, 162, 177, 0.3);
+    }
+
+    .glow-card img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+    }
+
+    .glow-card h3 {
+      padding: 20px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div id="loader"><h1>Luma Aesthetics</h1></div>
+
+  <header>
+    <div class="logo">Luma Aesthetics</div>
+    <nav>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="hamburger" onclick="toggleMobileNav()">
+      <div></div><div></div><div></div>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </header>
+
+  <div class="hero">
+    <canvas id="bg"></canvas>
+    <div class="hero-content" data-aos="fade-up">
+      <h1>Where Luxury Meets Skin</h1>
+      <p>Experience cutting-edge beauty treatments tailored to you.</p>
+      <a href="contact.html">Book Now</a>
+    </div>
+  </div>
+
+  <section data-aos="fade-up">
+    <h2 class="section-title">Our Treatments</h2>
+    <div class="card-grid">
+      <a href="botox.html" class="glow-card">
+        <img src="treatment-botox.jpg" alt="Botox & Fillers">
+        <h3>Botox & Fillers</h3>
+      </a>
+      <a href="laser.html" class="glow-card">
+        <img src="treatment-laser.jpg" alt="Laser Hair Removal">
+        <h3>Laser Hair Removal</h3>
+      </a>
+      <a href="facial.html" class="glow-card">
+        <img src="treatment-facial.jpg" alt="Facials & Skin Care">
+        <h3>Facials & Skin Care</h3>
+      </a>
+      <a href="hydrafacial.html" class="glow-card">
+        <img src="treatment-hydrafacial.jpg" alt="Hydrafacial">
+        <h3>Hydrafacial</h3>
+      </a>
+    </div>
+  </section>
+  <section data-aos="fade-up" style="background: #f9f9f9;">
+    <h2 class="section-title">Testimonials</h2>
+    <div class="card-grid">
+      <div class="glow-card">
+        <img src="review-1.jpg" alt="Client Testimonial">
+        <h3>★★★★★<br>“Best skin I've ever had!”</h3>
+      </div>
+      <div class="glow-card">
+        <img src="review-2.jpg" alt="Client Testimonial">
+        <h3>★★★★★<br>“I feel brand new after every visit.”</h3>
+      </div>
+      <div class="glow-card">
+        <img src="review-3.jpg" alt="Client Testimonial">
+        <h3>★★★★★<br>“Luxury vibe from the moment I walked in.”</h3>
+      </div>
+    </div>
+  </section>
+
+  <section data-aos="fade-up" style="background: rgba(255,255,255,0.6); backdrop-filter: blur(12px);">
+    <h2 class="section-title">Trusted By</h2>
+    <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));">
+      <img src="badge-1.png" alt="Trust Badge">
+      <img src="badge-2.png" alt="Trust Badge">
+      <img src="badge-3.png" alt="Trust Badge">
+      <img src="badge-4.png" alt="Trust Badge">
+    </div>
+  </section>
+
+  <section data-aos="fade-up" style="background: #e4a2b1; color: white;">
+    <h2 class="section-title">Join Our VIP List</h2>
+    <p class="section-subtitle">Be first to hear about exclusive deals and new services.</p>
+    <form style="max-width: 500px; margin: auto;">
+      <input type="email" placeholder="Enter your email" style="padding: 12px; width: 70%; border-radius: 30px; border: none;">
+      <button type="submit" style="padding: 12px 20px; border: none; background: #111; color: white; border-radius: 30px; margin-left: 10px;">Subscribe</button>
+    </form>
+  </section>
+
+  <footer style="background: #111; color: #fff; text-align: center; padding: 40px;">
+    <p>&copy; 2025 Luma Aesthetics. Designed by Swae Systems.</p>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+
+    // Canvas Particles Background
+    const canvas = document.getElementById("bg");
+    const ctx = canvas.getContext("2d");
+    let particlesArray;
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      init();
+    });
+
+    function Particle() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.size = Math.random() * 3 + 1;
+      this.speedX = Math.random() * 1 - 0.5;
+      this.speedY = Math.random() * 1 - 0.5;
+    }
+
+    Particle.prototype.update = function () {
+      this.x += this.speedX;
+      this.y += this.speedY;
+
+      if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
+      if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
+    };
+
+    Particle.prototype.draw = function () {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(255,255,255,0.5)";
+      ctx.fill();
+    };
+
+    function init() {
+      particlesArray = [];
+      for (let i = 0; i < 60; i++) {
+        particlesArray.push(new Particle());
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particlesArray.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animate);
+    }
+
+    init();
+    animate();
+
+    // Mobile Nav Toggle
+    function toggleMobileNav() {
+      const nav = document.getElementById("mobileNav");
+      nav.style.display = nav.style.display === "flex" ? "none" : "flex";
+    }
+
+    // Loader
+    window.addEventListener("load", () => {
+      document.getElementById("loader").style.display = "none";
+      document.body.classList.add("fade-in");
+    });
+  </script>
+</body>
+</html>
