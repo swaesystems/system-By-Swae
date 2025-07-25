@@ -48,7 +48,11 @@
       50% { opacity: 1; }
       100% { opacity: 0.4; }
     }
-
+   @keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}    
     header {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -362,40 +366,40 @@
     </div>
   </div>
 
-  <section data-aos="fade-up" style="background: #fff; clip-path: polygon(0 2%, 100% 0%, 100% 98%, 0% 100%); padding: 100px 40px;">
-  <h2 class="section-title" style="font-size: 38px;">Our Treatments</h2>
-  <p class="section-subtitle" style="margin-bottom: 60px;">Explore our top services designed to enhance your natural beauty.</p>
+  <section data-aos="fade-up">
+  <h2 class="section-title">Our Treatments</h2>
+  <p class="section-subtitle">Explore our top services designed to enhance your natural beauty.</p>
   <div class="card-grid">
     <a href="botox.html" style="text-decoration: none; color: inherit;">
-      <div class="glow-card" data-aos="fade-up">
+      <div class="glow-card" data-aos="fade-up" data-aos-delay="100">
         <div style="height: 240px; overflow: hidden; border-radius: 12px;">
-          <img src="botox-card-image.PNG" alt="Botox & Fillers" style="width: 100%; height: 100%; object-fit: cover;" />
+          <img src="botox-card-image.PNG" alt="Botox & Fillers" style="width: 100%; height: 100%; object-fit: cover; opacity: 0; animation: fadeIn 1s ease forwards;" />
         </div>
-        <h3 style="margin-top: 20px; font-size: 20px;">Botox & Fillers</h3>
+        <h3 style="margin-top: 15px; font-size: 20px;">Botox & Fillers</h3>
       </div>
     </a>
     <a href="laser.html" style="text-decoration: none; color: inherit;">
-      <div class="glow-card" data-aos="fade-up" data-aos-delay="100">
+      <div class="glow-card" data-aos="fade-up" data-aos-delay="200">
         <div style="height: 240px; overflow: hidden; border-radius: 12px;">
-          <img src="treatment-laser.PNG" alt="Laser Hair Removal" style="width: 100%; height: 100%; object-fit: cover;" />
+          <img src="treatment-laser.PNG" alt="Laser Hair Removal" style="width: 100%; height: 100%; object-fit: cover; opacity: 0; animation: fadeIn 1s ease forwards;" />
         </div>
-        <h3 style="margin-top: 20px; font-size: 20px;">Laser Hair Removal</h3>
+        <h3 style="margin-top: 15px; font-size: 20px;">Laser Hair Removal</h3>
       </div>
     </a>
     <a href="facials.html" style="text-decoration: none; color: inherit;">
-      <div class="glow-card" data-aos="fade-up" data-aos-delay="200">
+      <div class="glow-card" data-aos="fade-up" data-aos-delay="300">
         <div style="height: 240px; overflow: hidden; border-radius: 12px;">
-          <img src="treatment-facial.PNG" alt="Facials & Skin Care" style="width: 100%; height: 100%; object-fit: cover;" />
+          <img src="treatment-facial.PNG" alt="Facials & Skin Care" style="width: 100%; height: 100%; object-fit: cover; opacity: 0; animation: fadeIn 1s ease forwards;" />
         </div>
-        <h3 style="margin-top: 20px; font-size: 20px;">Facials & Skin Care</h3>
+        <h3 style="margin-top: 15px; font-size: 20px;">Facials & Skin Care</h3>
       </div>
     </a>
     <a href="hydrafacial.html" style="text-decoration: none; color: inherit;">
-      <div class="glow-card" data-aos="fade-up" data-aos-delay="300">
+      <div class="glow-card" data-aos="fade-up" data-aos-delay="400">
         <div style="height: 240px; overflow: hidden; border-radius: 12px;">
-          <img src="treatment-hydrafacial.PNG" alt="Hydrafacial" style="width: 100%; height: 100%; object-fit: cover;" />
+          <img src="treatment-hydrafacial.PNG" alt="Hydrafacial" style="width: 100%; height: 100%; object-fit: cover; opacity: 0; animation: fadeIn 1s ease forwards;" />
         </div>
-        <h3 style="margin-top: 20px; font-size: 20px;">Hydrafacial</h3>
+        <h3 style="margin-top: 15px; font-size: 20px;">Hydrafacial</h3>
       </div>
     </a>
   </div>
