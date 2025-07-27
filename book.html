@@ -3,183 +3,162 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Book Now | Luma Aesthetics</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
+  <title>Book an Appointment | Luma Aesthetics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: #fff;
-      color: #333;
+      background-color: #ffffff;
+      color: #111;
+      overflow-x: hidden;
     }
-
     header {
       position: fixed;
       top: 0;
       width: 100%;
-      background: rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.7);
       backdrop-filter: blur(10px);
-      padding: 20px 40px;
-      z-index: 1000;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding: 1rem 2rem;
+      z-index: 1000;
     }
-
-    header h1 {
+    .logo {
       font-family: 'Playfair Display', serif;
-      font-size: 22px;
+      font-size: 1.6rem;
+      font-weight: 600;
     }
-
-    .burger {
+    .menu-toggle {
+      font-size: 1.5rem;
       cursor: pointer;
-      width: 25px;
-      height: 20px;
-      position: relative;
     }
-
-    .burger div {
-      background-color: #000;
-      height: 3px;
-      margin: 5px 0;
-      transition: 0.3s ease;
-    }
-
-    .nav-links {
+    nav {
+      display: none;
       position: absolute;
       top: 70px;
-      right: 40px;
+      right: 20px;
       background: white;
       border-radius: 10px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-      display: none;
-      flex-direction: column;
-      text-align: left;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       overflow: hidden;
     }
-
-    .nav-links.active {
-      display: flex;
-    }
-
-    .nav-links a {
+    nav a {
+      display: block;
       padding: 12px 20px;
       text-decoration: none;
       color: #000;
       font-weight: 500;
-      border-bottom: 1px solid #eee;
     }
-
+    nav a:hover {
+      background: #f2f2f2;
+    }
     .hero {
-      background: url('book-hero.PNG') center/cover no-repeat;
-      height: 300px;
+      margin-top: 80px;
+      height: 400px;
+      background-image: url('book-hero.PNG');
+      background-size: cover;
+      background-position: center;
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      padding-top: 80px;
     }
-
-    .hero h2 {
+    .hero h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 34px;
-      color: #fff;
-      background: rgba(0, 0, 0, 0.4);
-      padding: 10px 20px;
+      font-size: 2.5rem;
+      color: white;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 1rem 2rem;
       border-radius: 10px;
     }
-
     .booking {
-      padding: 60px 20px;
-      max-width: 500px;
-      margin: auto;
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: #f9f9f9;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.06);
     }
-
-    .booking h3 {
-      text-align: center;
+    .booking h2 {
+      font-size: 1.8rem;
       font-family: 'Playfair Display', serif;
-      font-size: 26px;
-      margin-bottom: 20px;
+      margin-bottom: 1rem;
+      text-align: center;
     }
-
     .booking input,
     .booking select {
       width: 100%;
       padding: 14px;
-      margin: 10px 0;
-      border-radius: 10px;
+      margin-bottom: 1rem;
+      border-radius: 8px;
       border: 1px solid #ccc;
-      font-size: 16px;
+      font-size: 1rem;
     }
-
     .booking button {
       width: 100%;
-      padding: 14px;
-      background-color: #f7c9d9;
+      background: #f3cdd7;
+      color: black;
       border: none;
-      border-radius: 30px;
-      font-size: 18px;
-      font-weight: bold;
-      color: #000;
-      margin-top: 10px;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
       cursor: pointer;
+      transition: 0.3s;
     }
-
+    .booking button:hover {
+      background: #ecc2d0;
+    }
     footer {
-      background: #000;
+      background: #111;
       color: #fff;
+      padding: 1.5rem 0;
       text-align: center;
-      padding: 20px;
-      font-size: 14px;
+      font-size: 0.9rem;
+    }
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+        text-align: center;
+      }
     }
   </style>
 </head>
 <body>
-
   <header>
-    <h1>Luma Aesthetics</h1>
-    <div class="burger" onclick="toggleMenu()">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-    <nav class="nav-links" id="navLinks">
+    <div class="logo">Luma Aesthetics</div>
+    <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+    <nav id="menu">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="services.html">Services</a>
       <a href="faq.html">FAQ</a>
-      <a href="botox.html">Botox & Fillers</a>
-      <a href="book.html">Book Now</a>
     </nav>
   </header>
 
   <div class="hero">
-    <h2>Book Your Appointment</h2>
+    <h1>Book Your Appointment</h1>
   </div>
 
   <section class="booking">
-    <h3>Schedule Your Appointment</h3>
+    <h2>Schedule Your Appointment</h2>
     <form>
       <input type="text" placeholder="Full Name" required>
       <input type="email" placeholder="Email Address" required>
       <input type="tel" placeholder="Phone Number" required>
       <select required>
-        <option value="">Select Treatment</option>
-        <option>Botox & Fillers</option>
-        <option>Facials</option>
-        <option>Laser Treatments</option>
-        <option>Microneedling</option>
-        <option>Chemical Peel</option>
-        <option>Teeth Whitening</option>
+        <option value="" disabled selected>Select Treatment</option>
+        <option value="Botox & Fillers">Botox & Fillers</option>
+        <option value="Facials">Facials</option>
+        <option value="Laser">Laser</option>
+        <option value="Microneedling">Microneedling</option>
+        <option value="Chemical Peel">Chemical Peel</option>
+        <option value="Teeth Whitening">Teeth Whitening</option>
       </select>
-      <input type="date" placeholder="Select Date" required>
-      <input type="time" placeholder="Select Time" required>
+            <input type="date" required>
+      <input type="time" required>
       <button type="submit">Confirm Booking</button>
     </form>
   </section>
@@ -190,9 +169,21 @@
 
   <script>
     function toggleMenu() {
-      document.getElementById("navLinks").classList.toggle("active");
+      const menu = document.getElementById('menu');
+      if (menu.style.display === 'block') {
+        menu.style.display = 'none';
+      } else {
+        menu.style.display = 'block';
+      }
     }
+    window.addEventListener('click', function(e) {
+      const menu = document.getElementById('menu');
+      const toggle = document.querySelector('.menu-toggle');
+      if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+        menu.style.display = 'none';
+      }
+    });
   </script>
-
 </body>
 </html>
+      
