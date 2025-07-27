@@ -6,6 +6,9 @@
   <title>Luma Aesthetics | Luxury Med Spa</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
+   <!-- AOS (Animate On Scroll) Library -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -332,7 +335,63 @@
       .opt-in-section button {
         width: 100%;
       }
-    }
+
+  }
+    .card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+@media (min-width: 768px) {
+  .card-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.treatment-card {
+  display: block;
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  text-decoration: none;
+  color: inherit;
+  animation: slideUp 0.8s ease forwards;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.treatment-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.treatment-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.treatment-card h3 {
+  padding: 18px 22px;
+  margin: 0;
+  font-size: 20px;
+  color: #111;
+  background-color: #f7f7f7;
+}
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
   </style>
 </head>
 <body>
@@ -366,76 +425,44 @@
     </div>
   </div>
 
-  <!-- Our Treatments -->
-<section id="treatments" class="treatments-section" style="padding: 80px 20px; background: #fff;">
-  <div class="section-header" style="text-align: center; margin-bottom: 50px;">
-    <h2 style="font-family: 'Playfair Display', serif; font-size: 42px; color: #111;">Our Treatments</h2>
-    <p style="color: #777;">Tailored services to enhance your natural beauty</p>
-  </div>
+  <section data-aos="fade-up" class="treatment-section" style="padding: 60px 20px;">
+  <h2 class="section-title" style="text-align: center;">Our Treatments</h2>
+  <p class="section-subtitle" style="text-align: center; margin-bottom: 40px;">Explore our top services designed to enhance your natural beauty.</p>
 
-  <div class="treatment-grid" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; max-width: 1200px; margin: 0 auto;">
-    
-    <!-- Treatment Card -->
-    <a href="botox.html" class="treatment-card" style="display: block; width: 100%; max-width: 500px; background: #f9f9f9; border-radius: 16px; overflow: hidden; text-decoration: none; box-shadow: 0 8px 30px rgba(0,0,0,0.07); transition: all 0.4s ease;">
-      <div style="height: 280px; overflow: hidden;">
-        <img src="botox.PNG" alt="Botox & Fillers" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease;">
+  <div class="card-grid">
+    <!-- Botox & Fillers -->
+    <a href="botox.html" class="treatment-card" data-aos="fade-up" data-aos-delay="100">
+      <div class="treatment-image-wrapper">
+        <img src="botox-card-image.PNG" alt="Botox & Fillers">
       </div>
-      <div style="padding: 25px;">
-        <h3 style="margin-bottom: 10px; color: #111; font-size: 22px;">Botox & Fillers</h3>
-        <p style="color: #555;">Smooth wrinkles and restore youthful volume.</p>
-      </div>
+      <h3>Botox & Fillers</h3>
     </a>
 
-    <!-- Repeat Cards -->
-    <a href="#" class="treatment-card" style="...same styles...">
-      <div style="height: 280px; overflow: hidden;">
-        <img src="laser.PNG" alt="Laser Hair Removal" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease;">
+    <!-- Laser Hair Removal -->
+    <a href="laser.html" class="treatment-card" data-aos="fade-up" data-aos-delay="200">
+      <div class="treatment-image-wrapper">
+        <img src="laser-card-image.PNG" alt="Laser Hair Removal">
       </div>
-      <div style="padding: 25px;">
-        <h3 style="margin-bottom: 10px; color: #111; font-size: 22px;">Laser Hair Removal</h3>
-        <p style="color: #555;">Permanent reduction for smooth, radiant skin.</p>
-      </div>
+      <h3>Laser Hair Removal</h3>
     </a>
 
-    <a href="#" class="treatment-card" style="...same styles...">
-      <div style="height: 280px; overflow: hidden;">
-        <img src="hydrafacial.PNG" alt="Hydrafacial" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease;">
+    <!-- Hydrafacial -->
+    <a href="hydrafacial.html" class="treatment-card" data-aos="fade-up" data-aos-delay="300">
+      <div class="treatment-image-wrapper">
+        <img src="hydrafacial-card-image.PNG" alt="Hydrafacial">
       </div>
-      <div style="padding: 25px;">
-        <h3 style="margin-bottom: 10px; color: #111; font-size: 22px;">Hydrafacial</h3>
-        <p style="color: #555;">Deep cleanse and hydration for glowing skin.</p>
-      </div>
+      <h3>Hydrafacial</h3>
     </a>
 
-    <a href="#" class="treatment-card" style="...same styles...">
-      <div style="height: 280px; overflow: hidden;">
-        <img src="facial.PNG" alt="Facials" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease;">
+    <!-- Facials & Skincare -->
+    <a href="facials.html" class="treatment-card" data-aos="fade-up" data-aos-delay="400">
+      <div class="treatment-image-wrapper">
+        <img src="facials-card-image.PNG" alt="Facials & Skincare">
       </div>
-      <div style="padding: 25px;">
-        <h3 style="margin-bottom: 10px; color: #111; font-size: 22px;">Facials</h3>
-        <p style="color: #555;">Tailored skincare treatments for all skin types.</p>
-      </div>
+      <h3>Facials & Skincare</h3>
     </a>
-
-    <a href="#" class="treatment-card" style="...same styles...">
-      <div style="height: 280px; overflow: hidden;">
-        <img src="skincare.PNG" alt="Skincare" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease;">
-      </div>
-      <div style="padding: 25px;">
-        <h3 style="margin-bottom: 10px; color: #111; font-size: 22px;">Skincare</h3>
-        <p style="color: #555;">Premium products to maintain youthful glow.</p>
-      </div>
-    </a>
-    
   </div>
 </section>
-
-<!-- Add hover effect globally -->
-<style>
-  .treatment-card:hover img {
-    transform: scale(1.05);
-  }
-</style>
   <section data-aos="fade-up">
   <h2 class="section-title">Testimonials</h2>
   <p class="section-subtitle">What our clients are saying</p>
@@ -532,6 +559,12 @@
 
   <!-- Placeholder for chatbot widget -->
   <!-- <script src="YOUR-TIDIO-WIDGET.js"></script> -->
-
+<script>
+  AOS.init({
+    duration: 1200,
+    easing: 'ease-in-out',
+    once: true,
+  });
+</script>
 </body>
 </html>
