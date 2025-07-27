@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book Now | Luma Aesthetics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #fff;
+      color: #111;
+    }
+
+    header {
+      background-image: url('book-hero.PNG');
+      background-size: cover;
+      background-position: center;
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      color: #fff;
+      z-index: 2;
+      position: relative;
+    }
+
+    section {
+      padding: 60px 20px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      margin-bottom: 40px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    input, select, textarea {
+      padding: 14px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    button {
+      background: #f7c4d4;
+      color: #000;
+      padding: 14px;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #f4b8cb;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Book Your Appointment</h1>
+  </header>
+  <section data-aos="fade-up">
+    <h2>Let's Get You Scheduled</h2>
+    <form id="booking-form">
+      <input type="text" id="name" name="name" placeholder="Your Full Name" required />
+      <input type="email" id="email" name="email" placeholder="Your Email Address" required />
+      <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" required />
+      <select id="service" name="service" required>
+        <option value="">Select a Treatment</option>
+        <option value="Botox & Fillers">Botox & Fillers</option>
+        <option value="Facials">Facials</option>
+        <option value="Laser Treatments">Laser Treatments</option>
+        <option value="Microneedling">Microneedling</option>
+        <option value="Chemical Peel">Chemical Peel</option>
+        <option value="Teeth Whitening">Teeth Whitening</option>
+      </select>
+      <input type="date" id="date" name="date" required />
+      <input type="time" id="time" name="time" required />
+      <button type="submit">Confirm Booking</button>
+    </form>
+  </section>
+  <footer style="background:#111; color:#fff; text-align:center; padding:40px 20px; margin-top:60px;">
+    &copy; 2025 Luma Aesthetics. All rights reserved.
+  </footer>
+
+  <!-- AOS Script -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true });
+
+    // Auto-fill treatment from URL param
+    const params = new URLSearchParams(window.location.search);
+    const service = params.get("service");
+    if (service) {
+      document.getElementById("service").value = service;
+    }
+
+    // Fake submit (you can replace with real API later)
+    document.getElementById("booking-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      alert("Your appointment request has been submitted!");
+      this.reset();
+    });
+  </script>
+
+  <!-- Chatbot placeholder -->
+  <script>
+    // Tidio or other widget can go here
+  </script>
+</body>
+</html>
