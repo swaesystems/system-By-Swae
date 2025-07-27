@@ -64,9 +64,8 @@
 
     .hero {
       height: 100vh;
-      background: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.1)),
-                  url('botox-hero.PNG') no-repeat center center;
-      background-size: 130%;
+      background: url('botox-hero.PNG') no-repeat center center;
+      background-size: cover;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -87,7 +86,7 @@
     }
 
     section {
-      padding: 2rem 1.5rem 3rem;
+      padding: 3rem 1.5rem 2rem;
       max-width: 900px;
       margin: 0 auto;
     }
@@ -97,6 +96,25 @@
       font-size: 1.8rem;
       margin-bottom: 1rem;
       text-align: center;
+    }
+
+    .btn-book {
+      display: block;
+      width: fit-content;
+      margin: 2rem auto 0;
+      background: #e5b8c5;
+      color: #111;
+      border: none;
+      padding: 0.75rem 2rem;
+      font-weight: 600;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .btn-book:hover {
+      background: #d4a9b8;
     }
 
     footer {
@@ -140,11 +158,13 @@
 <section>
   <h3>About Botox & Fillers</h3>
   <p>
-    Botox and dermal fillers are two of the most popular non-surgical aesthetic treatments available today.
-    Botox helps to reduce the appearance of fine lines and wrinkles by temporarily relaxing facial muscles,
-    while dermal fillers add volume and smoothness to areas such as cheeks, lips, and nasolabial folds.
-    Together, they provide a refreshed, youthful appearance with minimal downtime.
+    Botox and dermal fillers are two of the most effective non-surgical solutions for reversing signs of aging.
+    Botox works by relaxing targeted facial muscles to smooth out wrinkles and prevent new lines from forming,
+    while fillers restore volume and contour to areas like the cheeks, lips, and jawline. These treatments are
+    fast, safe, and require little to no downtime, making them ideal for anyone looking to refresh their
+    appearance without invasive surgery. Our expert providers customize every treatment for natural, beautiful results.
   </p>
+  <a href="book.html" class="btn-book">Book Now</a>
 </section>
 
 <footer>
@@ -157,7 +177,6 @@
     nav.style.display = (nav.style.display === 'block') ? 'none' : 'block';
   }
 
-  // Close menu on outside click
   window.addEventListener('click', function(e) {
     const nav = document.getElementById('navMenu');
     const toggle = document.querySelector('.menu-toggle');
