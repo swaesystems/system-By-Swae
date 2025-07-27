@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Botox & Fillers | Luma Aesthetics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Poppins', sans-serif; background: #fff; color: #111; }
+
+    nav {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      padding: 10px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      margin-left: 20px;
+    }
+
+    .menu-toggle {
+      font-size: 30px;
+      margin-right: 20px;
+      cursor: pointer;
+    }
+
+    .hero-image {
+      height: 65vh;
+      background-image: url('botox-hero.PNG');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      animation: zoomIn 12s ease-in-out infinite alternate;
+    }
+
+    .hero-image::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 1;
+    }
+
+    .hero-image h1, .hero-image p {
+      position: relative;
+      z-index: 2;
+      color: #fff;
+    }
+
+    .hero-image h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+
+    .hero-image p {
+      font-size: 16px;
+      max-width: 600px;
+      margin: 0 auto;
+      color: #f1f1f1;
+    }
+
+    section {
+      padding: 80px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #333;
+      text-align: center;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 30px;
+      background: #f7c4d4;
+      color: black;
+      padding: 14px 28px;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 500;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #f4b8cb;
+    }
+
+    footer {
+      background: #111;
+      color: #fff;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 100px;
+    }
+
+    @keyframes zoomIn {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.07); }
+    }
+
+    @media (max-width: 768px) {
+      .hero-image h1 { font-size: 32px; }
+      .hero-image p { font-size: 15px; }
+      nav .logo { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">Luma Aesthetics</div>
+    <div class="menu-toggle">&#9776;</div>
+  </nav>
+
+  <div class="hero-image">
+    <h1>Botox & Fillers</h1>
+    <p>Refine. Restore. Reveal a more youthful you.</p>
+  </div>
+
+  <section data-aos="fade-up">
+    <h2>About Botox & Fillers</h2>
+    <p>
+      At Luma Aesthetics, our Botox and Dermal Filler treatments are designed to rejuvenate your natural beauty with subtle, effective enhancements. Botox gently relaxes facial muscles, smoothing fine lines and reducing wrinkles for a more refreshed appearance. Dermal fillers restore lost volume, sculpt contours, and soften creases — all without invasive surgery.
+      <br><br>
+      Our expert injectors tailor each treatment to your unique features, ensuring results that look natural and refined. Whether you want to smooth forehead lines, define cheekbones, or enhance lips, we provide precision and care with every session.
+      <br><br>
+      Discover the confidence that comes with radiant, youthful skin. Schedule a consultation today and take the first step toward timeless beauty.
+    </p>
+    <div style="text-align: center;">
+      <a href="https://www.lumaaesthetics.com/booking" class="btn">Book Now</a>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Luma Aesthetics. All rights reserved.
+  </footer>
+
+  <!-- AOS -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true });
+  </script>
+
+  <!-- Chatbot placeholder -->
+  <script>
+    // Add chatbot widget code here
+  </script>
+</body>
+</html>
