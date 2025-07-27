@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book Appointment | Luma Aesthetics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; background: #fff; color: #111; }
+
+    nav {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 999;
+      padding: 12px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      margin-left: 20px;
+    }
+    .menu-toggle {
+      font-size: 30px;
+      margin-right: 20px;
+      cursor: pointer;
+    }
+
+    .hero {
+      height: 65vh;
+      background-image: url('book-hero.PNG');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+    .hero h1, .hero p {
+      position: relative;
+      z-index: 2;
+      color: #fff;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+    .hero p {
+      font-size: 16px;
+      max-width: 600px;
+    }
+
+    .booking-section {
+      max-width: 1100px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+    .booking-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .booking-card {
+      border: 1px solid #eee;
+      border-radius: 14px;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
+      background: #fff;
+    }
+    .booking-card:hover {
+      transform: translateY(-5px);
+    }
+    .booking-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+    .booking-btn {
+      margin-top: 20px;
+      display: inline-block;
+      background: #f7c4d4;
+      color: black;
+      padding: 12px 24px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background 0.3s ease;
+    }
+    .booking-btn:hover {
+      background: #f4b8cb;
+    }
+
+    .final-cta {
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .final-cta h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      background: #111;
+      color: #fff;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 60px;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 32px; }
+      .hero p { font-size: 15px; }
+      .logo { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">Luma Aesthetics</div>
+    <div class="menu-toggle">&#9776;</div>
+  </nav>
+
+  <div class="hero">
+    <h1>Book Your Appointment</h1>
+    <p>Choose a treatment below and schedule your self-care session.</p>
+  </div>
+
+  <section class="booking-section">
+    <div class="booking-grid">
+      <div class="booking-card">
+        <h3>Botox & Fillers</h3>
+        <a href="#" class="booking-btn">Book Now</a>
+      </div>
+      <div class="booking-card">
+        <h3>Facials</h3>
+        <a href="#" class="booking-btn">Book Now</a>
+      </div>
+      <div class="booking-card">
+        <h3>Laser Treatments</h3>
+        <a href="#" class="booking-btn">Book Now</a>
+      </div>
+      <div class="booking-card">
+        <h3>Microneedling</h3>
+        <a href="#" class="booking-btn">Book Now</a>
+      </div>
+      <div class="booking-card">
+        <h3>Chemical Peels</h3>
+        <a href="#" class="booking-btn">Book Now</a>
+      </div>
+      <div class="booking-card">
+        <h3>Teeth Whitening</h3>
+        <a href="#" class="booking-btn">Book Now</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="final-cta">
+    <h2>Not sure what to book?</h2>
+    <p>Contact us for a custom consultation and we’ll help you choose.</p>
+  </div>
+
+  <footer>
+    &copy; 2025 Luma Aesthetics. All rights reserved.
+  </footer>
+
+  <!-- Chatbot Placeholder -->
+  <script>
+    // Add chatbot code here if needed
+  </script>
+</body>
+</html>
