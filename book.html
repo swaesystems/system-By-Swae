@@ -180,11 +180,16 @@
   <script>AOS.init({ duration: 1000, once: true });</script>
 
   <script>
+  document.addEventListener("DOMContentLoaded", function () {
     const toggle = document.querySelector('.menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
-    toggle.addEventListener('click', () => {
-      mobileMenu.style.display = (mobileMenu.style.display === 'block') ? 'none' : 'block';
-    });
-  </script>
+
+    if (toggle && mobileMenu) {
+      toggle.addEventListener('click', () => {
+        mobileMenu.style.display = (mobileMenu.style.display === 'block') ? 'none' : 'block';
+      });
+    }
+  });
+</script>
 </body>
 </html>
