@@ -392,6 +392,58 @@
     transform: translateY(0);
   }
 }
+ /* Updated Treatment Card Styling */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  margin-top: 50px;
+}
+
+.glow-card {
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  animation: slideUp 0.8s ease forwards;
+  opacity: 0;
+}
+
+.glow-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-bottom: 1px solid #eee;
+  opacity: 0;
+  animation: fadeIn 1.2s ease forwards;
+  animation-delay: 0.4s;
+}
+
+.glow-card h3 {
+  margin: 20px;
+  font-size: 20px;
+  text-align: center;
+  color: #111;
+}
+
+/* Scroll Animation */
+@keyframes slideUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
   </style>
 </head>
 <body>
