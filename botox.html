@@ -4,199 +4,155 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Botox & Fillers | Luma Aesthetics</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
       font-family: 'Poppins', sans-serif;
-      background: #fff;
+      background-color: #fff;
       color: #111;
+      line-height: 1.6;
     }
 
-    nav {
+    header {
       position: fixed;
-      width: 100%;
       top: 0;
-      left: 0;
-      z-index: 1000;
-      padding: 15px 20px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      z-index: 999;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #eee;
     }
 
     .logo {
       font-family: 'Playfair Display', serif;
-      font-size: 24px;
+      font-size: 1.5rem;
+      font-weight: 700;
     }
 
     .menu-toggle {
-      font-size: 30px;
+      font-size: 1.5rem;
       cursor: pointer;
+      display: block;
     }
 
-    #mobile-menu {
+    .nav-links {
       display: none;
       position: absolute;
-      top: 65px;
+      top: 70px;
       right: 20px;
-      background: #fff;
-      padding: 20px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      background-color: #fff;
+      border: 1px solid #ddd;
       border-radius: 10px;
-      z-index: 999;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
     }
 
-    #mobile-menu a {
+    .nav-links a {
       display: block;
-      margin-bottom: 12px;
-      color: #111;
+      padding: 1rem 1.5rem;
       text-decoration: none;
+      color: #111;
+      border-bottom: 1px solid #eee;
     }
 
-    .hero-image {
-      height: 65vh;
-      background-image: url('botox-hero.PNG');
-      background-size: cover;
-      background-position: center;
+    .nav-links a:last-child {
+      border-bottom: none;
+    }
+
+    .hero {
+      margin-top: 90px;
+      width: 100%;
+      height: 50vh;
+      background: url('botox-hero.PNG') no-repeat center center/cover;
       display: flex;
-      justify-content: center;
       align-items: center;
-      flex-direction: column;
-      text-align: center;
-      position: relative;
-    }
-
-    .hero-image::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.3);
-      z-index: 1;
-    }
-
-    .hero-image h1, .hero-image p {
-      position: relative;
-      z-index: 2;
+      justify-content: center;
       color: #fff;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.3);
     }
 
-    .hero-image h1 {
+    .hero h1 {
+      font-size: 2.5rem;
       font-family: 'Playfair Display', serif;
-      font-size: 42px;
-    }
-
-    .hero-image p {
-      font-size: 16px;
-      max-width: 600px;
-      margin-top: 10px;
     }
 
     section {
-      padding: 80px 20px;
-      max-width: 900px;
-      margin: 0 auto;
+      padding: 4rem 2rem;
+      max-width: 800px;
+      margin: auto;
     }
 
     h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
       font-family: 'Playfair Display', serif;
-      font-size: 36px;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    p {
-      font-size: 16px;
-      line-height: 1.8;
-      color: #333;
-      text-align: center;
-    }
-
-    .btn {
-      display: inline-block;
-      margin-top: 30px;
-      background: #f7c4d4;
-      color: black;
-      padding: 14px 28px;
-      text-decoration: none;
-      border-radius: 30px;
-      font-weight: 500;
-      transition: background 0.3s ease;
-    }
-
-    .btn:hover {
-      background: #f4b8cb;
     }
 
     footer {
       background: #111;
       color: #fff;
       text-align: center;
-      padding: 40px 20px;
-      margin-top: 100px;
-    }
-
-    @media (max-width: 768px) {
-      .hero-image h1 { font-size: 32px; }
-      .hero-image p { font-size: 15px; }
-      .logo { font-size: 20px; }
+      padding: 1.5rem 1rem;
+      font-size: 0.9rem;
     }
   </style>
 </head>
 <body>
-  <nav>
+  <header>
     <div class="logo">Luma Aesthetics</div>
-    <div class="menu-toggle">&#9776;</div>
-  </nav>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <nav class="nav-links" id="menu">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="faq.html">FAQ</a>
+    </nav>
+  </header>
 
-  <div id="mobile-menu">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="services.html">Services</a>
-    <a href="faq.html">FAQ</a>
-    <a href="botox.html">Botox & Fillers</a>
-    <a href="book.html">Book Now</a>
-  </div>
-
-  <div class="hero-image">
+  <div class="hero">
     <h1>Botox & Fillers</h1>
-    <p>Refine. Restore. Reveal a more youthful you.</p>
   </div>
 
-  <section data-aos="fade-up">
+  <section>
     <h2>About Botox & Fillers</h2>
     <p>
-      At Luma Aesthetics, our Botox and Dermal Filler treatments are designed to rejuvenate your natural beauty with subtle, effective enhancements. Botox gently relaxes facial muscles, smoothing fine lines and reducing wrinkles for a more refreshed appearance. Dermal fillers restore lost volume, sculpt contours, and soften creases — all without invasive surgery.
-      <br><br>
-      Our expert injectors tailor each treatment to your unique features, ensuring results that look natural and refined. Whether you want to smooth forehead lines, define cheekbones, or enhance lips, we provide precision and care with every session.
-      <br><br>
-      Discover the confidence that comes with radiant, youthful skin. Schedule a consultation today and take the first step toward timeless beauty.
+      At Luma Aesthetics, our Botox and Dermal Filler treatments are designed to rejuvenate your natural beauty with subtle, effective enhancements. Botox gently relaxes facial muscles to reduce the appearance of fine lines and wrinkles, while our fillers restore volume and contour to areas such as lips, cheeks, and jawline.
     </p>
-    <div style="text-align: center;">
-      <a href="book.html" class="btn">Book Now</a>
-    </div>
+    <br>
+    <p>
+      Our expert injectors ensure a safe, luxurious experience using premium products for long-lasting, natural-looking results. Whether you're looking to smooth frown lines or enhance facial features, we tailor every treatment to your individual goals.
+    </p>
   </section>
 
   <footer>
-    &copy; 2025 Luma Aesthetics. All rights reserved.
+    © 2025 Luma Aesthetics. All rights reserved.
   </footer>
 
-  <!-- AOS -->
-  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  <script>AOS.init({ duration: 1000, once: true });</script>
-
-  <!-- Hamburger Script -->
   <script>
-    const toggle = document.querySelector('.menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    toggle.addEventListener('click', () => {
-      mobileMenu.style.display = (mobileMenu.style.display === 'block') ? 'none' : 'block';
+    function toggleMenu() {
+      const menu = document.getElementById('menu');
+      if (menu.style.display === 'block') {
+        menu.style.display = 'none';
+      } else {
+        menu.style.display = 'block';
+      }
+    }
+    window.addEventListener('click', function(e) {
+      const menu = document.getElementById('menu');
+      const toggle = document.querySelector('.menu-toggle');
+      if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+        menu.style.display = 'none';
+      }
     });
   </script>
 </body>
