@@ -4,170 +4,174 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Botox & Fillers | Luma Aesthetics</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
       font-family: 'Poppins', sans-serif;
-      background: #fff;
+      background-color: #fff;
       color: #222;
-      overflow-x: hidden;
+      line-height: 1.6;
     }
+
     header {
       position: fixed;
+      width: 100%;
       top: 0;
       left: 0;
-      width: 100%;
-      padding: 20px 40px;
+      padding: 20px 30px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 999;
+      z-index: 1000;
+      background-color: rgba(255,255,255,0.8);
       backdrop-filter: blur(10px);
     }
-    .logo {
+
+    header h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 24px;
-      font-weight: 700;
-      color: #111;
+      font-size: 1.4rem;
     }
+
     .menu-toggle {
       font-size: 28px;
       cursor: pointer;
     }
-    nav {
-      position: absolute;
-      top: 70px;
-      right: 40px;
-      background: white;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-      border-radius: 12px;
-      overflow: hidden;
+
+    .mobile-menu {
       display: none;
       flex-direction: column;
-      z-index: 1000;
+      position: absolute;
+      top: 70px;
+      right: 30px;
+      background-color: #fff;
+      border-radius: 6px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
     }
-    nav a {
+
+    .mobile-menu a {
       padding: 15px 20px;
       text-decoration: none;
       color: #222;
-      font-weight: 500;
-      transition: background 0.3s;
+      border-bottom: 1px solid #eee;
     }
-    nav a:hover {
-      background: #f3f3f3;
+
+    .mobile-menu a:last-child {
+      border-bottom: none;
     }
 
     .hero {
+      position: relative;
       height: 100vh;
-      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-                  url('botox-hero.PNG') no-repeat center center;
-      background-size: cover;
+      background: url('botox-hero.jpeg') no-repeat center center/cover;
       display: flex;
-      justify-content: center;
       align-items: center;
-      text-align: center;
+      justify-content: center;
       flex-direction: column;
-      color: #fff;
+      text-align: center;
       padding: 0 20px;
     }
-    .hero h1 {
+
+    .hero h2 {
       font-family: 'Playfair Display', serif;
-      font-size: 46px;
+      font-size: 3rem;
+      color: #fff;
       margin-bottom: 10px;
     }
+
     .hero p {
-      font-size: 18px;
-      max-width: 600px;
+      font-size: 1.1rem;
+      color: #eee;
+      max-width: 700px;
     }
 
     .content {
-      padding: 60px 20px;
       max-width: 900px;
-      margin: 0 auto;
-      text-align: center;
+      margin: 60px auto 30px auto;
+      padding: 0 20px;
     }
 
-    .content h2 {
-      font-size: 28px;
+    .content h3 {
+      font-size: 1.8rem;
       font-family: 'Playfair Display', serif;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       color: #111;
     }
 
     .content p {
-      font-size: 17px;
-      line-height: 1.7;
+      font-size: 1.05rem;
       color: #333;
     }
 
     .book-btn {
       display: inline-block;
-      margin-top: 40px;
-      padding: 14px 28px;
-      background: #ffb6c1;
+      background-color: #f4c2c2;
       color: #111;
+      padding: 15px 30px;
       border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 16px;
+      font-size: 1rem;
+      font-weight: 500;
+      border-radius: 30px;
       text-decoration: none;
+      margin: 40px auto 60px auto;
+      display: block;
+      text-align: center;
       transition: all 0.3s ease;
     }
 
     .book-btn:hover {
-      background: #ff9db3;
+      background-color: #eab1b1;
     }
 
     @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 36px;
+      .hero h2 {
+        font-size: 2.2rem;
       }
+
       .hero p {
-        font-size: 16px;
+        font-size: 1rem;
       }
-      nav {
-        right: 20px;
+
+      .content h3 {
+        font-size: 1.4rem;
       }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <div class="logo">Luma Aesthetics</div>
-  <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
-  <nav id="mobileMenu">
-    <a href="index.html">Home</a>
-    <a href="services.html">Services</a>
-    <a href="faq.html">FAQ</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
+  <header>
+    <h1>Luma Aesthetics</h1>
+    <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+    <nav class="mobile-menu" id="mobileMenu">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
 
-<section class="hero">
-  <h1>Botox & Fillers</h1>
-  <p>Refine. Restore. Reveal a more youthful you.</p>
-</section>
+  <section class="hero">
+    <h2>Botox & Fillers</h2>
+    <p>Refine. Restore. Reveal a more youthful you.</p>
+  </section>
 
-<section class="content">
-  <h2>About Botox & Fillers</h2>
-  <p>
-    Discover the secret to a rejuvenated appearance with our expertly administered Botox and dermal fillers. These treatments are designed to soften fine lines, restore volume loss, and redefine your natural beauty without the need for invasive surgery. Whether you're looking to smooth crow's feet, lift your brows, or enhance your lips, our trained specialists deliver subtle and elegant results tailored to your unique facial structure. Experience the confidence boost that comes with a refreshed, youthful glow — because you deserve to look as vibrant as you feel.
-  </p>
-  <a href="book.html" class="book-btn">Book Now</a>
-</section>
+  <section class="content">
+    <h3>About Botox</h3>
+    <p>
+      Botox and dermal fillers are non-surgical cosmetic treatments designed to reduce fine lines, restore volume, and rejuvenate your natural beauty. At Luma Aesthetics, we take pride in offering advanced injection techniques performed by experienced professionals in a serene, spa-like setting. Whether you're smoothing forehead wrinkles, enhancing lips, or achieving a more lifted, contoured look — our Botox & Fillers treatments are tailored to your unique facial structure and goals. The results are subtle yet transformative, helping you feel confident, refreshed, and truly radiant.
+    </p>
 
-<script>
-  function toggleMenu() {
-    const menu = document.getElementById('mobileMenu');
-    menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
-  }
-</script>
+    <a href="book.html" class="book-btn">Book Your Appointment</a>
+  </section>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    }
+  </script>
 
 </body>
 </html>
