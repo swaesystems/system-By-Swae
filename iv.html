@@ -4,114 +4,123 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>IV Drip Therapy | Luma Aesthetics</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Poppins', sans-serif;
       background-color: #fff;
       color: #333;
+      line-height: 1.6;
     }
+
     header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(12px);
-      padding: 1.2rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding: 1.2rem 2rem;
+      position: relative;
     }
+
     .logo {
       font-family: 'Playfair Display', serif;
       font-size: 1.5rem;
       font-weight: 700;
     }
+
     .hamburger {
-  width: 44px;
-  height: 44px;
-  background-color: #000; /* black */
-  border-radius: 8px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+      width: 44px;
+      height: 44px;
+      background-color: #000;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hamburger span {
+      font-size: 24px;
+      color: #fff;
+    }
+
     .nav-menu {
       display: none;
       position: absolute;
       top: 70px;
       right: 20px;
-      background: black;
+      background: white;
+      color: black;
       padding: 1rem 2rem;
       border-radius: 10px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
     }
+
     .nav-menu a {
-      display: block;
-      margin: 1rem 0;
+      color: black;
       text-decoration: none;
-      font-weight: 500;
-      color: #333;
-    }
-    .nav-menu.show {
       display: block;
+      margin-bottom: 10px;
+      font-weight: 500;
     }
+
     .hero {
-      margin-top: 80px;
-      background: url('iv-hero.PNG') center center/cover no-repeat;
-      height: 80vh;
+      height: 85vh;
+      background: url('iv-hero.PNG') center/cover no-repeat;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
       color: white;
-      position: relative;
+      padding: 0 1rem;
     }
+
     .hero h1 {
       font-family: 'Playfair Display', serif;
       font-size: 3rem;
-      margin-bottom: 1rem;
     }
+
     .hero p {
-      font-size: 1.2rem;
-      max-width: 600px;
+      font-size: 1.1rem;
+      margin-top: 1rem;
+      font-weight: 300;
     }
+
     .section {
-      padding: 4rem 2rem;
-      text-align: center;
+      max-width: 900px;
+      margin: 4rem auto;
+      padding: 0 2rem;
     }
-    .section h2 {
-      font-size: 2rem;
-      font-family: 'Playfair Display', serif;
-      margin-bottom: 1rem;
-    }
+
     .section p {
-      font-size: 1rem;
-      max-width: 700px;
-      margin: auto;
+      font-size: 1.05rem;
       line-height: 1.8;
+      color: #444;
     }
+
     .book-btn {
-      margin-top: 3rem;
-      padding: 0.9rem 2rem;
-      background-color: #f7d9e5;
-      color: #000;
-      font-weight: 600;
-      font-size: 1rem;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      text-decoration: none;
       display: inline-block;
+      background-color: #f7cdd4;
+      color: black;
+      padding: 0.75rem 2rem;
+      border-radius: 30px;
+      font-weight: 500;
+      margin-top: 2rem;
+      text-decoration: none;
+      transition: background 0.3s ease;
     }
+
     .book-btn:hover {
       background-color: #f0c7d8;
     }
+
     footer {
       background: #f9f9f9;
       padding: 2rem;
@@ -119,19 +128,28 @@
       font-size: 0.9rem;
       color: #777;
     }
+
     @media (max-width: 768px) {
-      .hero h1 { font-size: 2.3rem; }
-      .hero p { font-size: 1rem; padding: 0 1rem; }
-      .section p { font-size: 0.95rem; }
+      .hero h1 {
+        font-size: 2.3rem;
+      }
+      .hero p {
+        font-size: 1rem;
+        padding: 0 1rem;
+      }
+      .section p {
+        font-size: 0.95rem;
+      }
     }
   </style>
 </head>
 <body>
+
   <header>
     <div class="logo">Luma Aesthetics</div>
     <div class="hamburger" onclick="toggleMenu()">
-  <span style="color: white; font-size: 22px;">☰</span>
-</div>
+      <span>&#9776;</span>
+    </div>
     <div class="nav-menu" id="navMenu">
       <a href="index.html">Home</a>
       <a href="services.html">Services</a>
@@ -146,9 +164,8 @@
   </section>
 
   <section class="section">
-    <h2>About IV Therapy</h2>
     <p>
-      Our premium IV Drip Therapy delivers a custom blend of essential vitamins, minerals, and hydration directly into your bloodstream for maximum absorption and immediate benefits. Whether you're seeking increased energy, immune support, glowing skin, or recovery from fatigue, our tailored IV treatments restore balance at a cellular level. Perfect for busy professionals, wellness enthusiasts, and anyone wanting to feel and look their best — all within a luxurious, spa-like experience.
+      At Luma Aesthetics, our IV Drip Therapy treatments deliver essential vitamins, minerals, and hydration directly into your bloodstream to promote total body wellness and rejuvenation. Whether you're looking to boost your energy, improve skin clarity, strengthen immunity, or recover faster after intense exertion — IV therapy offers a fast, effective solution. Our curated blends are administered in a serene environment and tailored to your body’s unique needs. Feel refreshed, revitalized, and restored from the inside out.
     </p>
     <a href="book.html" class="book-btn">Book Now</a>
   </section>
@@ -159,9 +176,10 @@
 
   <script>
     function toggleMenu() {
-      const navMenu = document.getElementById('navMenu');
-      navMenu.classList.toggle('show');
+      const menu = document.getElementById('navMenu');
+      menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
     }
   </script>
+
 </body>
 </html>
