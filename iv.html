@@ -6,30 +6,27 @@
   <title>IV Drip Therapy | Luma Aesthetics</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Poppins', sans-serif;
       background-color: #fff;
-      color: #333;
-      line-height: 1.6;
+      color: #111;
     }
 
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.2rem 2rem;
-      position: relative;
+      padding: 1.5rem 2rem;
+      position: absolute;
+      width: 100%;
+      z-index: 100;
     }
 
     .logo {
       font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       font-weight: 700;
     }
 
@@ -45,8 +42,31 @@
     }
 
     .hamburger span {
-      font-size: 24px;
-      color: #fff;
+      display: block;
+      width: 24px;
+      height: 3px;
+      background-color: white;
+      border-radius: 2px;
+      position: relative;
+    }
+
+    .hamburger span::before,
+    .hamburger span::after {
+      content: '';
+      position: absolute;
+      width: 24px;
+      height: 3px;
+      background-color: white;
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    .hamburger span::before {
+      top: -8px;
+    }
+
+    .hamburger span::after {
+      bottom: -8px;
     }
 
     .nav-menu {
@@ -55,15 +75,14 @@
       top: 70px;
       right: 20px;
       background: white;
-      color: black;
       padding: 1rem 2rem;
       border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      z-index: 1000;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      z-index: 999;
     }
 
     .nav-menu a {
-      color: black;
+      color: #000 !important;
       text-decoration: none;
       display: block;
       margin-bottom: 10px;
@@ -71,54 +90,52 @@
     }
 
     .hero {
+      position: relative;
       height: 85vh;
       background: url('iv-hero.PNG') center/cover no-repeat;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       text-align: center;
       color: white;
-      padding: 0 1rem;
+      padding: 2rem;
     }
 
     .hero h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 3rem;
+      font-size: 3.2rem;
+      margin-bottom: 1rem;
     }
 
     .hero p {
       font-size: 1.1rem;
-      margin-top: 1rem;
       font-weight: 300;
     }
 
-    .section {
-      max-width: 900px;
+    .content {
+      max-width: 800px;
       margin: 4rem auto;
       padding: 0 2rem;
-    }
-
-    .section p {
+      text-align: center;
       font-size: 1.05rem;
       line-height: 1.8;
-      color: #444;
     }
 
     .book-btn {
       display: inline-block;
-      background-color: #f7cdd4;
-      color: black;
-      padding: 0.75rem 2rem;
-      border-radius: 30px;
-      font-weight: 500;
       margin-top: 2rem;
+      padding: 0.75rem 2rem;
+      background-color: #f0c7d8;
+      color: black;
+      border: none;
+      border-radius: 30px;
+      font-weight: 600;
       text-decoration: none;
-      transition: background 0.3s ease;
+      transition: 0.3s;
     }
 
     .book-btn:hover {
-      background-color: #f0c7d8;
+      background-color: #ebbfd3;
     }
 
     footer {
@@ -130,25 +147,36 @@
     }
 
     @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2.3rem;
+      .hero {
+        height: 70vh;
+        padding: 1rem;
       }
+
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
       .hero p {
         font-size: 1rem;
-        padding: 0 1rem;
       }
-      .section p {
-        font-size: 0.95rem;
+
+      .content {
+        font-size: 1rem;
       }
     }
   </style>
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('navMenu');
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+  </script>
 </head>
 <body>
-
   <header>
     <div class="logo">Luma Aesthetics</div>
     <div class="hamburger" onclick="toggleMenu()">
-      <span>&#9776;</span>
+      <span></span>
     </div>
     <div class="nav-menu" id="navMenu">
       <a href="index.html">Home</a>
@@ -159,27 +187,19 @@
   </header>
 
   <section class="hero">
-    <h1>IV Drip Therapy</h1>
-    <p>Replenish. Recharge. Reignite your natural vitality.</p>
+    <div>
+      <h1>IV Drip Therapy</h1>
+      <p>Replenish. Recharge. Reignite your natural vitality.</p>
+    </div>
   </section>
 
-  <section class="section">
-    <p>
-      At Luma Aesthetics, our IV Drip Therapy treatments deliver essential vitamins, minerals, and hydration directly into your bloodstream to promote total body wellness and rejuvenation. Whether you're looking to boost your energy, improve skin clarity, strengthen immunity, or recover faster after intense exertion — IV therapy offers a fast, effective solution. Our curated blends are administered in a serene environment and tailored to your body’s unique needs. Feel refreshed, revitalized, and restored from the inside out.
-    </p>
-    <a href="book.html" class="book-btn">Book Now</a>
+  <section class="content">
+    <p>IV Drip Therapy is a powerful and efficient way to deliver essential vitamins, minerals, and hydration directly into your bloodstream. Whether you're recovering from fatigue, stress, or dehydration — or simply looking for a wellness boost — this treatment helps restore balance and revitalizes your entire system. Our custom formulations are administered by experienced professionals in a luxurious, calming setting designed for total relaxation and rejuvenation.</p>
+    <a class="book-btn" href="book.html">Book Now</a>
   </section>
 
   <footer>
     &copy; 2025 Luma Aesthetics. All rights reserved.
   </footer>
-
-  <script>
-    function toggleMenu() {
-      const menu = document.getElementById('navMenu');
-      menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
-    }
-  </script>
-
 </body>
 </html>
