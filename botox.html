@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Botox & Fillers | Luma Aesthetics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fff;
+      color: #333;
+    }
+
+    header.header {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      padding: 30px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .hamburger {
+      font-size: 28px;
+      cursor: pointer;
+      position: absolute;
+      right: 25px;
+      top: 35px;
+      z-index: 1001;
+    }
+
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 80px;
+      right: 25px;
+      background: white;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      overflow: hidden;
+      z-index: 1000;
+    }
+
+    .nav-links a {
+      padding: 14px 20px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      border-bottom: 1px solid #eee;
+      background: #fff;
+    }
+
+    .nav-links a:last-child {
+      border-bottom: none;
+    }
+
+    .nav-links.show {
+      display: flex;
+    }
+
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      text-align: center;
+      padding: 0 20px;
+      background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+                  url('botox-hero.PNG') no-repeat center center / cover;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 44px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      max-width: 600px;
+      line-height: 1.6;
+    }
+
+    @media (min-width: 768px) {
+      .nav-links {
+        flex-direction: row;
+        position: static;
+        display: flex !important;
+        background: none;
+        box-shadow: none;
+      }
+
+      .nav-links a {
+        border: none;
+        background: transparent;
+        padding: 0 16px;
+        color: #333;
+      }
+
+      .hamburger {
+        display: none;
+      }
+
+      header.header {
+        position: fixed;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(6px);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">Luma Aesthetics</div>
+    <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Botox & Fillers</h1>
+    <p>
+      Refine. Restore. Reveal a more youthful version of you with our expertly applied Botox and dermal fillers.
+      Whether you're looking to smooth fine lines, enhance volume, or refresh your natural beauty,
+      our precision treatments deliver elegant, subtle results that help you look and feel your best.
+    </p>
+  </section>
+
+  <script>
+    function toggleMenu() {
+      var nav = document.getElementById("navLinks");
+      nav.classList.toggle("show");
+    }
+  </script>
+
+</body>
+</html>
