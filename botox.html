@@ -7,125 +7,138 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-   html {
-  scroll-behavior: smooth;
-}
+
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: #fff;
-      color: #333;
+      background-color: #ffffff;
+      color: #222;
     }
+
     header {
-      position: fixed;
+      position: absolute;
       top: 0;
       width: 100%;
-      z-index: 1000;
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(12px);
-      padding: 1.2rem 2rem;
+      z-index: 10;
+      padding: 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
+
     .logo {
+      color: #fff;
       font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
+      font-size: 24px;
       font-weight: 700;
+      z-index: 20;
+      transition: color 0.3s ease;
     }
+
     .hamburger {
-      font-size: 2rem;
+      display: block;
       cursor: pointer;
-      border: none;
-      background: none;
-      color: #000;
+      z-index: 20;
     }
-    .nav-menu {
-      display: none;
+
+    .hamburger div {
+      width: 26px;
+      height: 3px;
+      background-color: #fff;
+      margin: 5px 0;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links {
       position: absolute;
       top: 70px;
       right: 20px;
-      background: white;
-      padding: 1rem 2rem;
+      background-color: #fff;
       border-radius: 10px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      padding: 15px 25px;
+      display: none;
+      flex-direction: column;
+      gap: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     }
-    .nav-menu a {
-      display: block;
-      margin: 1rem 0;
+
+    .nav-links a {
+      color: #222;
       text-decoration: none;
+      font-size: 16px;
       font-weight: 500;
-      color: #333;
     }
-    .nav-menu.show {
-      display: block;
+
+    .nav-active .nav-links {
+      display: flex;
     }
 
     .hero {
-  margin-top: 80px;
-  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
-              url('botox-hero.PNG') center 20% no-repeat;
-  background-size: cover;
-  background-attachment: scroll;
-  height: 85vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: white;
-  position: relative;
-}
- 
-    .hero p {
-      font-size: 1.2rem;
-      max-width: 600px;
-    }
-    .section {
-      padding: 4rem 2rem;
+      height: 100vh;
+      background: url('botox-hero.PNG') center center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
       text-align: center;
+      position: relative;
     }
-    .section h2 {
-      font-size: 2rem;
+
+    .hero h1 {
+      font-size: 42px;
       font-family: 'Playfair Display', serif;
-      margin-bottom: 1.5rem;
+      margin-bottom: 10px;
     }
-    .section p {
-      font-size: 1rem;
-      max-width: 750px;
+
+    .hero p {
+      font-size: 18px;
+      font-weight: 300;
+    }
+
+    .section {
+      padding: 60px 20px;
+      max-width: 900px;
       margin: auto;
-      line-height: 1.8;
-    }
-    .book-btn {
-      margin-top: 3rem;
-      padding: 0.9rem 2rem;
-      background-color: #f7d9e5;
-      color: #000;
-      font-weight: 600;
-      font-size: 1rem;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      text-decoration: none;
-      display: inline-block;
-    }
-    .book-btn:hover {
-      background-color: #f0c7d8;
-    }
-    footer {
-      background: #f9f9f9;
-      padding: 2rem;
       text-align: center;
-      font-size: 0.9rem;
-      color: #777;
+    }
+
+    .section h2 {
+      font-size: 32px;
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 20px;
+    }
+
+    .section p {
+      font-size: 16px;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .book-btn {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 14px 30px;
+      background-color: #f4c2c2;
+      color: #222;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 30px;
+      transition: background 0.3s ease;
+    }
+
+    .book-btn:hover {
+      background-color: #f1b6b6;
     }
 
     @media (max-width: 768px) {
-      .hero h1 { font-size: 2.3rem; }
-      .hero p { font-size: 1rem; padding: 0 1rem; }
-      .section p { font-size: 0.95rem; }
+      .hero h1 { font-size: 32px; }
+      .hero p { font-size: 16px; }
+      .section h2 { font-size: 26px; }
     }
   </style>
+</head>
+<body>
 </head>
 <body>
   <header>
