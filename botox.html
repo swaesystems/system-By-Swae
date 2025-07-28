@@ -5,77 +5,63 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Botox & Fillers | Luma Aesthetics</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: #ffffff;
+      background-color: #fff;
       color: #111;
     }
-
     header {
       position: absolute;
       top: 0;
       width: 100%;
-      padding: 25px 40px;
       z-index: 10;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      backdrop-filter: blur(8px);
+      padding: 20px 30px;
+      backdrop-filter: blur(10px);
     }
-
     .logo {
       font-family: 'Playfair Display', serif;
-      font-size: 1.6em;
-      font-weight: 700;
+      font-size: 1.5rem;
+      font-weight: bold;
       color: #111;
     }
-
-    nav {
-      position: relative;
-    }
-
-    .hamburger {
-      display: block;
+    .menu-toggle {
+      font-size: 1.5rem;
       cursor: pointer;
-      font-size: 28px;
       z-index: 11;
     }
-
     .nav-links {
       display: none;
       position: absolute;
-      top: 50px;
-      right: 0;
-      background: white;
+      top: 70px;
+      right: 30px;
+      background-color: white;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      padding: 15px 20px;
       flex-direction: column;
+      gap: 15px;
+      padding: 20px;
+      z-index: 10;
     }
-
     .nav-links a {
       color: #111;
       text-decoration: none;
-      padding: 10px 0;
-      font-size: 16px;
+      font-weight: 500;
     }
-
-    .nav-links a:hover {
-      color: #d291bc;
+    .nav-open .nav-links {
+      display: flex;
     }
-
     .hero {
       height: 100vh;
       background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
                   url('botox-hero.PNG') no-repeat center center;
       background-size: cover;
+      background-position: center;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -84,113 +70,87 @@
       text-align: center;
       padding: 0 20px;
     }
-
     .hero h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 3em;
-      margin-bottom: 10px;
+      font-size: 2.5rem;
     }
-
     .hero p {
-      font-size: 1.1em;
-      max-width: 600px;
+      font-size: 1.1rem;
+      margin-top: 10px;
     }
-
     section {
-      padding: 80px 20px 60px;
+      padding: 50px 20px 30px;
+      max-width: 800px;
+      margin: 0 auto;
       text-align: center;
-      background: #fff;
     }
-
     section h2 {
       font-family: 'Playfair Display', serif;
-      font-size: 2em;
+      font-size: 2rem;
       margin-bottom: 20px;
     }
-
     section p {
-      max-width: 700px;
-      margin: auto;
-      font-size: 1.05em;
-      line-height: 1.8em;
+      font-size: 1.05rem;
+      line-height: 1.8;
     }
-
-    .book-button {
+    .book-btn {
       display: inline-block;
       margin-top: 40px;
-      padding: 14px 36px;
-      font-size: 16px;
-      background-color: #e8b4cc;
+      padding: 14px 30px;
+      font-size: 1rem;
+      background-color: #f7c6d4;
       color: #111;
       text-decoration: none;
-      border-radius: 30px;
-      font-weight: 500;
-      transition: all 0.3s ease;
+      border-radius: 50px;
+      transition: background 0.3s;
     }
-
-    .book-button:hover {
-      background-color: #d291bc;
+    .book-btn:hover {
+      background-color: #f2b4c7;
     }
-
     footer {
-      text-align: center;
-      padding: 40px 20px;
       background-color: #111;
       color: #fff;
-      font-size: 14px;
-    }
-
-    @media (min-width: 768px) {
-      .nav-links {
-        right: 40px;
-      }
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
     }
   </style>
 </head>
 <body>
-<header>
-  <div class="logo">Luma Aesthetics</div>
-  <nav>
-    <div class="hamburger" onclick="toggleMenu()">☰</div>
-    <div class="nav-links" id="navLinks">
+  <header>
+    <div class="logo">Luma Aesthetics</div>
+    <div class="menu-toggle" onclick="document.body.classList.toggle('nav-open')">
+      <i class="fas fa-bars"></i>
+    </div>
+    <nav class="nav-links">
       <a href="index.html">Home</a>
       <a href="services.html">Services</a>
       <a href="faq.html">FAQ</a>
       <a href="contact.html">Contact</a>
-    </div>
-  </nav>
-</header>
+    </nav>
+  </header>
 
-<div class="hero">
-  <h1>Botox & Fillers</h1>
-  <p>Refine. Restore. Reveal a more youthful you.</p>
-</div>
+  <section class="hero">
+    <h1>Botox & Fillers</h1>
+    <p>Refine. Restore. Reveal a more youthful you.</p>
+  </section>
 
-<section>
-  <h2>About Botox & Fillers</h2>
-  <p>
-    Botox and dermal fillers are two of the most popular non-surgical aesthetic treatments available today. Botox is used to relax facial muscles and smooth dynamic wrinkles like crow’s feet and frown lines. Dermal fillers restore volume to the face, plump the lips, and enhance contours for a more youthful, refreshed appearance. These minimally invasive treatments offer immediate results with little to no downtime, helping you look your best while preserving your natural beauty.
-  </p>
-  <a href="book.html" class="book-button">Book Now</a>
-</section>
-<footer>
-  © 2025 Luma Aesthetics. All rights reserved.
-</footer>
+  <section>
+    <h2>About Botox & Fillers</h2>
+    <p>
+      Botox and dermal fillers are two of the most popular non-surgical aesthetic treatments available today. Botox helps reduce the appearance of fine lines and wrinkles by temporarily relaxing facial muscles, while dermal fillers restore volume and enhance facial contours, such as lips, cheeks, and under-eyes. These treatments work together to deliver a youthful, radiant, and refreshed look — all with minimal downtime. Results are noticeable within days and can last for months, helping you look and feel your best with confidence.
+    </p>
+    <a class="book-btn" href="book.html">Book Now</a>
+  </section>
 
-<script>
-  function toggleMenu() {
-    const nav = document.getElementById('navLinks');
-    nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
-  }
+  <footer>
+    © 2025 Luma Aesthetics. All rights reserved.
+  </footer>
 
-  window.onclick = function(event) {
-    const nav = document.getElementById('navLinks');
-    const isClickInside = event.target.closest('.nav-links') || event.target.closest('.hamburger');
-    if (!isClickInside) {
-      nav.style.display = 'none';
-    }
-  };
-</script>
-
+  <script>
+    document.querySelector('.menu-toggle').addEventListener('click', () => {
+      document.body.classList.toggle('nav-open');
+    });
+  </script>
 </body>
 </html>
