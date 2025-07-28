@@ -76,19 +76,29 @@
       cursor: pointer;
     }
 
-    .hero {
-      height: 100vh;
-      background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
-                  url('botox-hero.PNG') no-repeat center center;
-      background-size: cover;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      color: #fff;
-      text-align: center;
-      padding: 0 2rem;
-    }
+    /* Burger icon position tweak */
+.hamburger {
+  position: absolute;
+  top: 35px;
+  right: 25px; /* moved slightly more right */
+  cursor: pointer;
+  z-index: 1001;
+}
+
+/* Hero image zoom fix */
+.hero {
+  height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+              url('botox-hero.PNG') no-repeat center center;
+  background-size: 115%; /* was 130%, now zoomed out more */
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #fff;
+  text-align: center;
+}
 
     .hero h1 {
       font-family: 'Playfair Display', serif;
