@@ -10,133 +10,131 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: #fff;
-      color: #333;
+      background-color: #ffffff;
+      color: #222;
     }
 
     header {
-      position: fixed;
+      position: absolute;
       top: 0;
       width: 100%;
-      z-index: 1000;
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(12px);
-      padding: 1.2rem 2rem;
+      z-index: 10;
+      padding: 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
     .logo {
+      color: #fff;
       font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
+      font-size: 24px;
       font-weight: 700;
+      z-index: 20;
+      transition: color 0.3s ease;
     }
 
     .hamburger {
-      font-size: 2rem;
+      display: block;
       cursor: pointer;
-      border: none;
-      background: none;
-      color: #000;
+      z-index: 20;
     }
 
-    .nav-menu {
-      display: none;
+    .hamburger div {
+      width: 26px;
+      height: 3px;
+      background-color: #fff;
+      margin: 5px 0;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links {
       position: absolute;
       top: 70px;
       right: 20px;
-      background: white;
-      padding: 1rem 2rem;
+      background-color: #fff;
       border-radius: 10px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      padding: 15px 25px;
+      display: none;
+      flex-direction: column;
+      gap: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     }
 
-    .nav-menu a {
-      display: block;
-      margin: 1rem 0;
+    .nav-links a {
+      color: #222;
       text-decoration: none;
+      font-size: 16px;
       font-weight: 500;
-      color: #333;
+    }
+
+    .nav-active .nav-links {
+      display: flex;
     }
 
     .hero {
-      margin-top: 80px;
+      height: 100vh;
       background: url('laser-hero.PNG') center center/cover no-repeat;
-      height: 70vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      color: #fff;
       text-align: center;
-      color: white;
       position: relative;
     }
 
     .hero h1 {
+      font-size: 42px;
       font-family: 'Playfair Display', serif;
-      font-size: 2.7rem;
-      margin-bottom: 1rem;
+      margin-bottom: 10px;
     }
 
     .hero p {
-      font-size: 1.2rem;
-      max-width: 600px;
+      font-size: 18px;
+      font-weight: 300;
     }
 
     .section {
-      padding: 4rem 2rem;
+      padding: 60px 20px;
+      max-width: 900px;
+      margin: auto;
       text-align: center;
     }
 
     .section h2 {
-      font-size: 2rem;
+      font-size: 32px;
       font-family: 'Playfair Display', serif;
-      margin-bottom: 1rem;
+      margin-bottom: 20px;
     }
 
     .section p {
-      font-size: 1rem;
-      max-width: 700px;
-      margin: auto;
-      line-height: 1.8;
+      font-size: 16px;
+      line-height: 1.7;
+      font-weight: 300;
     }
 
     .book-btn {
-      margin-top: 3rem;
-      padding: 0.9rem 2rem;
-      background-color: #f7d9e5;
-      color: #000;
-      font-weight: 600;
-      font-size: 1rem;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      text-decoration: none;
       display: inline-block;
+      margin-top: 40px;
+      padding: 14px 30px;
+      background-color: #f4c2c2;
+      color: #222;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 30px;
+      transition: background 0.3s ease;
     }
 
     .book-btn:hover {
-      background-color: #f0c7d8;
-    }
-
-    footer {
-      background: #f9f9f9;
-      padding: 2rem;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #777;
+      background-color: #f1b6b6;
     }
 
     @media (max-width: 768px) {
-      .hero h1 { font-size: 2.3rem; }
-      .hero p { font-size: 1rem; padding: 0 1rem; }
-      .section p { font-size: 0.95rem; }
-    }
-
-    .show {
-      display: block !important;
+      .hero h1 { font-size: 32px; }
+      .hero p { font-size: 16px; }
+      .section h2 { font-size: 26px; }
     }
   </style>
 </head>
@@ -144,38 +142,36 @@
 
   <header>
     <div class="logo">Luma Aesthetics</div>
-    <button class="hamburger" onclick="toggleMenu()">&#9776;</button>
-    <div class="nav-menu" id="navMenu">
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <nav class="nav-links" id="navMenu">
       <a href="index.html">Home</a>
       <a href="services.html">Services</a>
       <a href="faq.html">FAQ</a>
       <a href="contact.html">Contact</a>
-    </div>
+    </nav>
   </header>
 
   <section class="hero">
     <h1>Laser Hair Removal</h1>
-    <p>Smooth, confident skin — with zero compromise.</p>
+    <p>Smooth, confident skin — without compromise.</p>
   </section>
 
   <section class="section">
     <h2>About Laser Hair Removal</h2>
     <p>
-      Laser hair removal offers a safe, long-lasting solution to unwanted hair. At Luma Aesthetics, we use advanced, gentle laser technology to precisely target hair follicles, reducing hair growth while preserving your skin’s integrity. Whether it’s for your face, arms, legs, or bikini area, each session is fast, virtually painless, and leaves you with smoother, softer skin. Say goodbye to razors and waxing — and hello to lasting confidence.
+      Laser hair removal offers a safe, long-lasting solution to unwanted hair. At Luma Aesthetics, we use advanced, gentle laser technology to precisely target hair follicles, reducing future growth without damaging the skin. Treatments are quick, comfortable, and tailored to your unique needs. Whether it’s your face, legs, arms, or bikini area — experience smoother skin and renewed confidence with each visit.
     </p>
     <a href="book.html" class="book-btn">Book Now</a>
   </section>
 
-  <footer>
-    &copy; 2025 Luma Aesthetics. All rights reserved.
-  </footer>
-
   <script>
     function toggleMenu() {
-      const navMenu = document.getElementById('navMenu');
-      navMenu.classList.toggle('show');
+      document.body.classList.toggle('nav-active');
     }
   </script>
-
 </body>
 </html>
