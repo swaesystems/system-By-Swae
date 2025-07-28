@@ -7,11 +7,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
       font-family: 'Poppins', sans-serif;
       background-color: #fff;
       color: #333;
     }
+
     header {
       position: fixed;
       top: 0;
@@ -24,17 +26,21 @@
       justify-content: space-between;
       align-items: center;
     }
+
     .logo {
       font-family: 'Playfair Display', serif;
       font-size: 1.5rem;
       font-weight: 700;
     }
+
     .hamburger {
       font-size: 2rem;
       cursor: pointer;
       border: none;
       background: none;
+      color: #000;
     }
+
     .nav-menu {
       display: none;
       position: absolute;
@@ -45,6 +51,7 @@
       border-radius: 10px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
+
     .nav-menu a {
       display: block;
       margin: 1rem 0;
@@ -52,10 +59,11 @@
       font-weight: 500;
       color: #333;
     }
+
     .hero {
       margin-top: 80px;
       background: url('laser-hero.PNG') center center/cover no-repeat;
-      height: 95vh;
+      height: 70vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -64,30 +72,36 @@
       color: white;
       position: relative;
     }
+
     .hero h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 3rem;
+      font-size: 2.7rem;
       margin-bottom: 1rem;
     }
+
     .hero p {
       font-size: 1.2rem;
       max-width: 600px;
     }
+
     .section {
       padding: 4rem 2rem;
       text-align: center;
     }
+
     .section h2 {
       font-size: 2rem;
       font-family: 'Playfair Display', serif;
       margin-bottom: 1rem;
     }
+
     .section p {
       font-size: 1rem;
       max-width: 700px;
       margin: auto;
       line-height: 1.8;
     }
+
     .book-btn {
       margin-top: 3rem;
       padding: 0.9rem 2rem;
@@ -102,9 +116,11 @@
       text-decoration: none;
       display: inline-block;
     }
+
     .book-btn:hover {
       background-color: #f0c7d8;
     }
+
     footer {
       background: #f9f9f9;
       padding: 2rem;
@@ -118,9 +134,14 @@
       .hero p { font-size: 1rem; padding: 0 1rem; }
       .section p { font-size: 0.95rem; }
     }
+
+    .show {
+      display: block !important;
+    }
   </style>
 </head>
 <body>
+
   <header>
     <div class="logo">Luma Aesthetics</div>
     <button class="hamburger" onclick="toggleMenu()">&#9776;</button>
@@ -134,13 +155,13 @@
 
   <section class="hero">
     <h1>Laser Hair Removal</h1>
-    <p>Smooth. Silky. Permanently effortless beauty.</p>
+    <p>Smooth, confident skin — with zero compromise.</p>
   </section>
 
   <section class="section">
     <h2>About Laser Hair Removal</h2>
     <p>
-      Experience the freedom of flawless skin with advanced laser hair removal at Luma Aesthetics. Our state-of-the-art technology targets hair follicles at the root, reducing unwanted hair with precision and long-lasting results. Whether it's legs, underarms, face, or bikini line, our treatments are fast, gentle, and tailored to your skin type. Say goodbye to shaving and waxing — and hello to smooth, touchable skin with no downtime. Reveal your natural glow with confidence.
+      Laser hair removal offers a safe, long-lasting solution to unwanted hair. At Luma Aesthetics, we use advanced, gentle laser technology to precisely target hair follicles, reducing hair growth while preserving your skin’s integrity. Whether it’s for your face, arms, legs, or bikini area, each session is fast, virtually painless, and leaves you with smoother, softer skin. Say goodbye to razors and waxing — and hello to lasting confidence.
     </p>
     <a href="book.html" class="book-btn">Book Now</a>
   </section>
@@ -155,5 +176,6 @@
       navMenu.classList.toggle('show');
     }
   </script>
+
 </body>
 </html>
