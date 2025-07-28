@@ -34,6 +34,7 @@
       cursor: pointer;
       border: none;
       background: none;
+      color: #000;
     }
     .nav-menu {
       display: none;
@@ -52,17 +53,21 @@
       font-weight: 500;
       color: #333;
     }
+    .nav-menu.show {
+      display: block;
+    }
+
     .hero {
       margin-top: 80px;
-      background: url('botox-hero.PNG') center center/cover no-repeat;
-      height: 95vh;
+      height: 90vh;
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+                  url('botox-hero.PNG') center center/cover no-repeat;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
       text-align: center;
       color: white;
-      position: relative;
     }
     .hero h1 {
       font-family: 'Playfair Display', serif;
@@ -80,15 +85,15 @@
     .section h2 {
       font-size: 2rem;
       font-family: 'Playfair Display', serif;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
     }
     .section p {
       font-size: 1rem;
-      max-width: 700px;
+      max-width: 750px;
       margin: auto;
       line-height: 1.8;
     }
-        .book-btn {
+    .book-btn {
       margin-top: 3rem;
       padding: 0.9rem 2rem;
       background-color: #f7d9e5;
@@ -140,14 +145,12 @@
   <section class="section">
     <h2>About Botox</h2>
     <p>
-      Botox and dermal fillers are non-surgical aesthetic treatments designed to refresh your appearance with minimal downtime.
-      Our expertly administered injections smooth fine lines, enhance volume, and highlight your natural features for a youthful, elegant look.
-      Whether you're looking to soften wrinkles, lift facial contours, or rejuvenate tired skin, our treatments deliver subtle,
-      artful results that leave you looking and feeling your best.
+      Botox and dermal fillers offer one of the fastest, most effective ways to reduce fine lines, restore facial volume, and bring balance to your features. Our licensed experts at Luma Aesthetics craft each treatment with precision — targeting key areas like crow’s feet, smile lines, and forehead creases while maintaining your natural beauty. We believe in subtle, transformative results that leave you looking refreshed, never “frozen.” With minimal downtime and personalized care, you’ll walk away feeling more radiant and confident than ever.
     </p>
     <a href="book.html" class="book-btn">Book Now</a>
   </section>
-    <footer>
+
+  <footer>
     &copy; 2025 Luma Aesthetics. All rights reserved.
   </footer>
 
