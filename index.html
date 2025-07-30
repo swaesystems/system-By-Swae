@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Swae Systems | Freight Broker AI Automation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f4f7fa;
+      color: #111;
+      line-height: 1.6;
+    }
+
+    header {
+      background: url('freight-hero.jpg') center center / cover no-repeat;
+      padding: 120px 20px;
+      color: white;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+    }
+
+    header p {
+      font-size: 1.1rem;
+      font-weight: 300;
+      max-width: 650px;
+      margin: 0 auto 30px;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    }
+
+    .cta-button {
+      background-color: #0b1f40;
+      color: white;
+      padding: 14px 30px;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background-color: #153260;
+    }
+
+    section {
+      padding: 80px 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: #0b1f40;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      font-size: 1rem;
+      color: #444;
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .feature-box {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      flex: 1 1 200px;
+      min-width: 220px;
+      max-width: 240px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+      text-align: center;
+    }
+
+    .feature-box h3 {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      color: #0b1f40;
+    }
+
+    .feature-box p {
+      font-size: 0.95rem;
+      color: #333;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+
+      .feature-box {
+        flex: 1 1 100%;
+      }
+
+      .cta-button {
+        font-size: 0.95rem;
+        padding: 12px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Hero Section -->
+<header>
+  <h1>AUTOMATE YOUR FREIGHT BROKERAGE</h1>
+  <p>Streamline operations and boost efficiency with AI automation</p>
+  <a href="#form" class="cta-button">BOOK A DEMO</a>
+</header>
+<!-- Features Section -->
+<section>
+  <h2 class="section-title">AI-POWERED AUTOMATION FOR FREIGHT BROKERS</h2>
+  <div class="features">
+    <div class="feature-box">
+      <h3>🚛 Quote Generation</h3>
+      <p>Instantly respond to inbound quote requests using AI-powered workflows.</p>
+    </div>
+    <div class="feature-box">
+      <h3>🔄 Broker CRM Updates</h3>
+      <p>Push form data into your CRM for seamless lead tracking and follow-up.</p>
+    </div>
+    <div class="feature-box">
+      <h3>💬 Responsive Chatbot</h3>
+      <p>Answer visitor questions 24/7 and collect lead info on autopilot.</p>
+    </div>
+    <div class="feature-box">
+      <h3>📩 Automated Follow-Ups</h3>
+      <p>Send timely reminders and messages to boost close rates and replies.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Form Section -->
+<section id="form" style="background: #eaf1f8; padding: 60px 20px;">
+  <h2 class="section-title">GET STARTED WITH AI AUTOMATION</h2>
+  <form style="max-width: 500px; margin: 0 auto; text-align: center;">
+    <input type="text" placeholder="Full Name" required style="width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 6px; border: 1px solid #ccc; font-size: 1rem;" />
+    <input type="text" placeholder="Company" required style="width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 6px; border: 1px solid #ccc; font-size: 1rem;" />
+    <input type="email" placeholder="Email" required style="width: 100%; padding: 15px; margin-bottom: 20px; border-radius: 6px; border: 1px solid #ccc; font-size: 1rem;" />
+    <button type="submit" style="background-color: #0b1f40; color: white; border: none; padding: 15px 30px; border-radius: 6px; font-size: 1rem; font-weight: 600;">SUBMIT</button>
+  </form>
+</section>
+<!-- Chatbot Preview Bubble -->
+<div style="position: fixed; bottom: 24px; right: 24px; z-index: 1000;">
+  <div style="background: white; border-radius: 12px; padding: 15px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); max-width: 280px;">
+    <p style="margin-bottom: 12px; font-weight: 500;">Hi there!<br>How can I assist you today?</p>
+    <a href="#form" style="display: block; background: #0b1f40; color: white; padding: 10px; margin-bottom: 10px; text-align: center; border-radius: 6px; text-decoration: none;">Learn more about AI automation</a>
+    <a href="#form" style="display: block; background: #0b1f40; color: white; padding: 10px; text-align: center; border-radius: 6px; text-decoration: none;">Schedule a demo</a>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer style="background: #0b1f40; color: white; text-align: center; padding: 40px 20px; margin-top: 60px;">
+  <p>&copy; 2025 Swae Systems. All rights reserved.</p>
+</footer>
+
+<!-- Placeholder for Tidio or Live Chat -->
+<script>
+  // Replace this with your Tidio script once ready
+</script>
+
+</body>
+</html>
