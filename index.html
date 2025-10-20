@@ -10,7 +10,8 @@
   <!-- Open Graph -->
   <meta property="og:title" content="Luma Aesthetics — Luxury Med Spa"/>
   <meta property="og:description" content="Concierge-grade treatments with seamless booking."/>
-  <meta property="og:image" content="hero.PNG"/>
+  <!-- FIX: match actual filename casing; using HERO.PNG consistently -->
+  <meta property="og:image" content="HERO.PNG"/>
   <meta property="og:type" content="website"/>
 
   <!-- Fonts -->
@@ -88,6 +89,51 @@
     footer{padding:70px 0}.foot{display:grid;gap:18px;grid-template-columns:2fr 1fr 1fr}
     @media(max-width:900px){.foot{grid-template-columns:1fr}}
     .small{color:#bfbfbf;font-size:13px}.muted{color:#999}
+
+    /* === Luxury Chat Launcher (custom) === */
+    /* Hide Botpress default launcher */
+    .bpw-floating-button,.bpw-launcher{ display:none !important; }
+
+    /* Container always on top */
+    #lux-chat{ position:fixed; right:22px; bottom:22px; z-index:2147483647; display:flex; flex-direction:column; align-items:flex-end; gap:10px; }
+
+    /* Teaser pill */
+    #luxTeaser{
+      padding:10px 14px; border-radius:999px;
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(10px);
+      border:1px solid rgba(255,255,255,0.12);
+      color:#fff; font:500 14px/1.2 Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;
+      box-shadow:0 10px 24px rgba(0,0,0,.35);
+      opacity:0; transform:translateX(8px);
+      transition:all .4s ease;
+      pointer-events:none; /* visual only */
+    }
+    #luxTeaser.show{ opacity:1; transform:translateX(0); }
+
+    /* Round bubble */
+    #luxBubble{
+      position: relative;
+      width:64px; height:64px; border-radius:50%;
+      border:1px solid rgba(255,255,255,0.16);
+      background: radial-gradient(120% 120% at 30% 20%, #ff8ecb 0%, #ff5bb3 50%, #c43fff 100%);
+      box-shadow:0 12px 30px rgba(196, 63, 255, .35), inset 0 0 22px rgba(255,255,255,.18);
+      display:grid; place-items:center; cursor:pointer;
+      transition: transform .15s ease, box-shadow .3s ease, filter .3s ease;
+    }
+    #luxBubble:hover{ transform: translateY(-2px); filter:brightness(1.06); }
+    #luxBubble img{ width:28px; height:28px; object-fit:contain; border-radius:6px; filter:drop-shadow(0 2px 6px rgba(0,0,0,.3)); }
+    #luxBubble::after{
+      content:""; position:absolute; inset:-3px; border-radius:50%;
+      background: conic-gradient(from 0deg, rgba(255,255,255,.2), rgba(255,255,255,0) 40%, rgba(255,255,255,.2) 100%);
+      opacity:.25; filter: blur(6px); pointer-events:none;
+    }
+    #luxBubble.open{ box-shadow:0 12px 34px rgba(255,215,0,.35), inset 0 0 28px rgba(255,255,255,.22); }
+
+    @media (max-width:520px){
+      #lux-chat{ right:12px; bottom:14px; }
+      #luxBubble{ width:58px; height:58px; }
+    }
   </style>
 </head>
 <body>
@@ -169,12 +215,23 @@
       <div class="grid grid--2" style="margin-top:18px">
         <div class="card">
           <form id="bookingForm" style="display:grid;gap:14px">
-            <div class="grid grid--2"><input name="name" placeholder="Full Name" required/><input name="phone" placeholder="Phone" required/></div>
-            <div class="grid grid--2"><input type="email" name="email" placeholder="Email" required/><select name="service" required>
-              <option value="" disabled selected>Select Service</option>
-              <option>Botox & Fillers</option><option>Laser Hair Removal</option><option>Facials & Skincare</option>
-            </select></div>
-            <div class="grid grid--2"><input type="date" name="date" required/><input type="time" name="time" required/></div>
+            <div class="grid grid--2">
+              <input name="name" placeholder="Full Name" required/>
+              <input type="tel" name="phone" placeholder="Phone" required/>
+            </div>
+            <div class="grid grid--2">
+              <input type="email" name="email" placeholder="Email" required/>
+              <select name="service" required>
+                <option value="" disabled selected>Select Service</option>
+                <option>Botox & Fillers</option>
+                <option>Laser Hair Removal</option>
+                <option>Facials & Skincare</option>
+              </select>
+            </div>
+            <div class="grid grid--2">
+              <input type="date" name="date" required/>
+              <input type="time" name="time" required/>
+            </div>
             <textarea rows="4" name="notes" placeholder="Notes (optional)"></textarea>
             <button class="btn btn--blush" type="submit">Submit Request</button>
             <div id="formMsg" class="small muted"></div>
@@ -221,232 +278,57 @@
     });
   </script>
 
-<!-- LUXURY CHAT LAUNCHER (PATCHED) -->
-<style>
-  /* Hide Botpress default launcher */
-  .bpw-floating-button, .bpw-launcher { display: none !important; }
+  <!-- LUXURY CHAT LAUNCHER (Custom bubble → Botpress) -->
+  <div id="lux-chat" aria-live="polite">
+    <div id="luxTeaser">💬 Chat with our concierge — <b>Hablamos español</b></div>
+    <button id="luxBubble" aria-label="Open chat">
+      <img src="l-logo.PNG" alt="Luma Concierge"/>
+    </button>
+  </div>
 
-  /* Container always on top */
-  #lux-chat { position: fixed; right: 22px; bottom: 22px; z-index: 2147483647; }
+  <!-- Botpress Webchat (stable, no iframe) -->
+  <script src="https://cdn.botpress.cloud/webchat/v3.3/inject.js"></script>
+  <script src="https://files.bpcontent.cloud/2025/10/09/17/20251009173228-A9M2AU59.js"></script>
 
-  /* Teaser pill */
-  #luxTeaser{
-    position:absolute; right:86px; bottom:12px;
-    padding:10px 14px; border-radius:999px;
-    background: rgba(255,255,255,0.06);
-    backdrop-filter: blur(10px);
-    border:1px solid rgba(255,255,255,0.12);
-    color:#fff; font:500 14px/1.2 system-ui,-apple-system,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;
-    box-shadow:0 10px 24px rgba(0,0,0,.35);
-    opacity:0; transform:translateX(8px);
-    transition:all .4s ease;
-    pointer-events:none; /* visual only */
-  }
-  #luxTeaser.show{ opacity:1; transform:translateX(0); }
-
-  /* Round bubble */
-  #luxBubble{
-    position: relative; /* keeps ::after ring positioned */
-    width:64px; height:64px; border-radius:50%;
-    border:1px solid rgba(255,255,255,0.16);
-    background: radial-gradient(120% 120% at 30% 20%, #ff8ecb 0%, #ff5bb3 50%, #c43fff 100%);
-    box-shadow:0 12px 30px rgba(196, 63, 255, .35), inset 0 0 22px rgba(255,255,255,.18);
-    display:grid; place-items:center; cursor:pointer;
-    transition: transform .15s ease, box-shadow .3s ease, filter .3s ease;
-  }
-  #luxBubble:hover{ transform: translateY(-2px); filter:brightness(1.06); }
-  #luxBubble:active{ transform: translateY(0); }
-  #luxBubble img{ width:28px; height:28px; object-fit:contain; border-radius:6px; filter:drop-shadow(0 2px 6px rgba(0,0,0,.3)); }
-  #luxBubble::after{
-    content:""; position:absolute; inset:-3px; border-radius:50%;
-    background: conic-gradient(from 0deg, rgba(255,255,255,.2), rgba(255,255,255,0) 40%, rgba(255,255,255,.2) 100%);
-    opacity:.25; filter: blur(6px); pointer-events:none;
-  }
-  #luxBubble.open{ box-shadow:0 12px 34px rgba(255,215,0,.35), inset 0 0 28px rgba(255,255,255,.22); }
-</style>
-
-<div id="lux-chat" aria-live="polite">
-  <div id="luxTeaser">💬 Chat with our concierge — <b>Hablamos español</b></div>
-  <button id="luxBubble" aria-label="Open chat">
-    <img src="l-logo.PNG" alt="Luma Concierge"/>
-  </button>
-</div>
-
-<!-- Botpress (keep your same two scripts) -->
-<script src="https://cdn.botpress.cloud/webchat/v3.3/inject.js" defer></script>
-<script src="https://files.bpcontent.cloud/2025/10/09/17/20251009173228-A9M2AU59.js" defer></script>
-
-<script>
-(function(){
-  const bubble = document.getElementById('luxBubble');
-  const teaser = document.getElementById('luxTeaser');
-
-  // show teaser after a moment
-  setTimeout(()=>teaser.classList.add('show'), 1200);
-  ['mouseenter','click','touchstart'].forEach(evt=>{
-    bubble.addEventListener(evt, ()=>teaser.classList.remove('show'), { once:true });
-  });
-
-  let wantOpen = false;   // user clicked before widget ready?
-  let isOpen = false;
-
-  function getBP(){ return window.botpressWebChat; }
-
-  function tryWireUp(){
-    const bp = getBP();
-    if(!bp || typeof bp.open!=='function' || typeof bp.close!=='function') return false;
-
-    // Sync bubble state with widget events
-    bp.onEvent && bp.onEvent(ev=>{
-      if(ev.type==='webchat:opened'){ isOpen = true;  bubble.classList.add('open'); }
-      if(ev.type==='webchat:closed'){ isOpen = false; bubble.classList.remove('open'); }
-    });
-
-    // If user clicked before ready, honor it now
-    if(wantOpen){ bp.open(); wantOpen = false; }
-
-    // Toggle on click (always call BP directly)
-    bubble.addEventListener('click', ()=>{
-      const bp2 = getBP();
-      if(!bp2 || typeof bp2.open!=='function'){ wantOpen = true; return; }
-      if(isOpen){ bp2.close(); } else { bp2.open(); }
-    });
-
-    return true;
-  }
-
-  // Keep trying until Botpress is ready
-  const iv = setInterval(()=>{ if(tryWireUp()) clearInterval(iv); }, 120);
-  // Also try once after page fully loaded (safety)
-  window.addEventListener('load', tryWireUp);
-})();
-</script>
-
-
-
-<style>
-  :root{
-    --lux-pink:#FF4FA0;     /* primary blush/pink */
-    --lux-pink-2:#eeb7c9;   /* soft blush accents */
-    --lux-ink:#0c0c0c;      /* near black */
-    --lux-ui:#111;          /* panel bg */
-    --lux-text:#fff;
-  }
-  #lux-chat{ position:fixed; right:20px; bottom:20px; z-index:9999;
-             display:flex; flex-direction:column; align-items:flex-end; gap:10px; }
-
-  /* Teaser above bubble */
-  .lux-teaser{
-    background:#fff; color:#111; font:600 14px/1.2 Inter,system-ui;
-    padding:7px 12px; border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,.18);
-    opacity:0; transform:translateY(6px); pointer-events:none; transition:.35s ease;
-  }
-  .lux-teaser.show{ opacity:1; transform:translateY(0); }
-
-  /* Circle bubble button */
-  .lux-bubble{
-    width:64px; height:64px; border-radius:50%; border:0; cursor:pointer;
-    display:flex; align-items:center; justify-content:center; background:var(--lux-pink);
-    box-shadow:0 10px 28px rgba(0,0,0,.45); transition:transform .2s ease, box-shadow .2s ease;
-  }
-  .lux-bubble:hover{ transform:translateY(-2px); box-shadow:0 14px 34px rgba(0,0,0,.5); }
-  .lux-bubble img{ width:32px; height:32px; display:block; }
-
-  /* Panel that expands from bubble */
-  .lux-panel{
-    position:fixed; right:20px; bottom:100px; width:380px; height:560px;
-    background:linear-gradient(180deg,#141414,#0f0f0f); color:var(--lux-text);
-    border-radius:18px; overflow:hidden; border:1px solid rgba(255,255,255,.08);
-    box-shadow:0 20px 50px rgba(0,0,0,.55);
-    transform:scale(.96) translateY(8px); opacity:0; pointer-events:none;
-    transition:opacity .25s ease, transform .25s ease;
-  }
-  .lux-panel.open{ opacity:1; transform:scale(1) translateY(0); pointer-events:auto; }
-
-  .lux-header{
-    height:48px; display:flex; align-items:center; justify-content:space-between;
-    padding:0 12px; background:#111; border-bottom:1px solid rgba(255,255,255,.08);
-  }
-  .lux-title{ font:600 14px/1 Inter,system-ui; letter-spacing:.02em }
-  .lux-close{ width:36px; height:36px; border-radius:10px; background:#1a1a1a; color:#fff;
-              border:1px solid rgba(255,255,255,.12); cursor:pointer; font-size:20px; line-height:1; }
-  .lux-close:hover{ background:#222; }
-
-  #luxFrame{ width:100%; height:calc(100% - 48px); border:0; background:#000; }
-
-  /* Mobile sizes */
-  @media (max-width: 520px){
-    .lux-panel{ right:12px; bottom:90px; width:92vw; height:74vh; border-radius:16px; }
-    .lux-bubble{ width:58px; height:58px; }
-    #lux-chat{ right:12px; bottom:14px; }
-  }
-
-  /* Fade bubble while scrolling (luxury feel) */
-  .lux-hidden{ opacity:.25; transition:opacity .25s ease; }
-  .lux-hidden:hover{ opacity:1; }
-
-  /* Respect reduced motion */
-  @media (prefers-reduced-motion: reduce){
-    .lux-panel, .lux-teaser{ transition:none; }
-    .lux-bubble{ transition:none; }
-  }
-</style>
-
-<script>
+  <script>
   (function(){
     const bubble = document.getElementById('luxBubble');
-    const panel  = document.getElementById('luxPanel');
-    const close  = document.getElementById('luxClose');
     const teaser = document.getElementById('luxTeaser');
-    const chat   = document.getElementById('lux-chat');
-    let open = false;
 
-    // Show teaser briefly on load
-    setTimeout(()=>teaser.classList.add('show'), 600);
-    setTimeout(()=>teaser.classList.remove('show'), 4600);
-
-    function toggle(openNow){
-      open = (openNow != null) ? openNow : !open;
-      panel.classList.toggle('open', open);
-      panel.setAttribute('aria-hidden', open ? 'false' : 'true');
-      if (open) teaser.classList.remove('show');
-    }
-    bubble.addEventListener('click', ()=>toggle());
-    close.addEventListener('click', ()=>toggle(false));
-
-    // Close when clicking outside panel (but not on bubble)
-    document.addEventListener('click', (e)=>{
-      if (!open) return;
-      const within = panel.contains(e.target) || bubble.contains(e.target) || chat.contains(e.target);
-      if (!within) toggle(false);
+    // show teaser after a moment; hide on first interaction
+    setTimeout(()=>teaser.classList.add('show'), 1200);
+    ['mouseenter','click','touchstart'].forEach(evt=>{
+      bubble.addEventListener(evt, ()=>teaser.classList.remove('show'), { once:true });
     });
-    // ESC to close
-    document.addEventListener('keydown', (e)=>{ if (e.key==='Escape') toggle(false); });
 
-    // Fade bubble while scrolling down; show when idle/up
-    let lastY = window.scrollY, hideTimer;
-    window.addEventListener('scroll', ()=>{
-      const down = window.scrollY > lastY;
-      lastY = window.scrollY;
-      bubble.classList.toggle('lux-hidden', down);
-      clearTimeout(hideTimer);
-      hideTimer = setTimeout(()=>bubble.classList.remove('lux-hidden'), 350);
-    }, {passive:true});
+    // Queue click until SDK ready; toggle open/close
+    let pendingClick = false, isOpen = false;
+
+    function bp(){ return window.botpressWebChat; }
+    function ready(){ return bp() && typeof bp().open==='function' && typeof bp().close==='function'; }
+
+    // keep state in sync
+    const sync = () => {
+      if (!ready() || !bp().onEvent) return;
+      bp().onEvent(ev=>{
+        if (ev.type==='webchat:opened'){ isOpen = true;  bubble.classList.add('open'); }
+        if (ev.type==='webchat:closed'){ isOpen = false; bubble.classList.remove('open'); }
+      });
+    };
+
+    bubble.addEventListener('click', ()=>{
+      if (!ready()){ pendingClick = true; return; }
+      if (isOpen) bp().close(); else bp().open();
+    });
+
+    const iv = setInterval(()=>{
+      if (!ready()) return;
+      sync();
+      if (pendingClick){ bp().open(); pendingClick=false; }
+      clearInterval(iv);
+    }, 120);
+    window.addEventListener('load', ()=>{ if (ready()) { sync(); } });
   })();
-</script>
-  <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const bubble = document.getElementById("luxBubble");
-
-  bubble.addEventListener("click", function () {
-    if (window.botpressWebChat && typeof window.botpressWebChat.open === "function") {
-      window.botpressWebChat.open();
-    } else {
-      console.warn("Botpress not ready yet");
-    }
-  });
-});
-</script>
-
+  </script>
 </body>
 </html>
