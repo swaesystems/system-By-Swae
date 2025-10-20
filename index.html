@@ -221,29 +221,112 @@
     });
   </script>
 
- <!-- LUXURY CHAT BUBBLE (iframe launcher) -->
-<div id="lux-chat">
-  <!-- Bubble & teaser -->
-  <div class="lux-teaser" id="luxTeaser">💬 Chat with our concierge — <b>Hablamos español</b></div>
-  <button class="lux-bubble" id="luxBubble" aria-label="Open chat">
-    <img src="l-logo.PNG" alt="Luma Concierge" />
-  </button>
+<!-- LUXURY CHAT LAUNCHER -->
+<style>
+  /* Hide Botpress' default round launcher */
+  .bpw-floating-button,
+  .bpw-launcher { display: none !important; }
 
-  <!-- Panel (holds the iframe) -->
-  <div class="lux-panel" id="luxPanel" aria-hidden="true" role="dialog" aria-label="Concierge chat">
-    <div class="lux-header">
-      <div class="lux-title">Luma Concierge</div>
-      <button class="lux-close" id="luxClose" aria-label="Close chat">×</button>
-    </div>
-    <iframe
-      id="luxFrame"
-      title="Luma Concierge"
-      src="https://cdn.botpress.cloud/webchat/v3.3/shareable.html?configUrl=https://files.bpcontent.cloud/2025/10/09/17/20251009173229-URGYDLZV.json"
-      loading="lazy"
-      referrerpolicy="no-referrer"
-    ></iframe>
-  </div>
+  /* Container */
+  #lux-chat { position: fixed; right: 22px; bottom: 22px; z-index: 99999; }
+
+  /* Teaser pill */
+  #luxTeaser {
+    position: absolute; right: 86px; bottom: 12px;
+    padding: 10px 14px; border-radius: 999px;
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: #fff; font: 500 14px/1.2 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+    box-shadow: 0 10px 24px rgba(0,0,0,.35);
+    opacity: 0; transform: translateX(8px);
+    transition: all .4s ease;
+    pointer-events: none; /* only visual */
+  }
+  #luxTeaser.show { opacity: 1; transform: translateX(0); }
+
+  /* Round bubble */
+  #luxBubble {
+    width: 64px; height: 64px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.16);
+    background: radial-gradient(120% 120% at 30% 20%, #ff8ecb 0%, #ff5bb3 50%, #c43fff 100%);
+    box-shadow: 0 12px 30px rgba(196, 63, 255, .35), inset 0 0 22px rgba(255,255,255,.18);
+    display: grid; place-items: center; cursor: pointer;
+    transition: transform .15s ease, box-shadow .3s ease, filter .3s ease;
+  }
+  #luxBubble:hover { transform: translateY(-2px); filter: brightness(1.06); }
+  #luxBubble:active { transform: translateY(0); }
+
+  /* Logo inside bubble */
+  #luxBubble img {
+    width: 28px; height: 28px; object-fit: contain; border-radius: 6px;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,.3));
+  }
+
+  /* Small “typing glow” ring */
+  #luxBubble::after{
+    content:""; position:absolute; inset:-3px; border-radius:50%;
+    background: conic-gradient(from 0deg, rgba(255,255,255,.2), rgba(255,255,255,0) 40%, rgba(255,255,255,.2) 100%);
+    opacity:.25; filter: blur(6px);
+  }
+
+  /* Optional mini indicator when chat open */
+  #luxBubble.open { box-shadow: 0 12px 34px rgba(255, 215, 0, .35), inset 0 0 28px rgba(255,255,255,.22); }
+</style>
+
+<div id="lux-chat" aria-live="polite">
+  <div id="luxTeaser">💬 Chat with our concierge — <b>Hablamos español</b></div>
+  <button id="luxBubble" aria-label="Open chat">
+    <img src="l-logo.PNG" alt="Luma Concierge"/>
+  </button>
 </div>
+
+<!-- Botpress Webchat (stable, no iframe) -->
+<script src="https://cdn.botpress.cloud/webchat/v3.3/inject.js" defer></script>
+<script src="https://files.bpcontent.cloud/2025/10/09/17/20251009173228-A9M2AU59.js" defer></script>
+
+<script>
+  // Wait for Botpress to be ready, then wire up our custom launcher
+  (function () {
+    const bubble = document.getElementById('luxBubble');
+    const teaser = document.getElementById('luxTeaser');
+
+    // Show teaser after a moment
+    setTimeout(() => teaser.classList.add('show'), 1400);
+    // Hide teaser when user hovers/clicks
+    ['mouseenter','click','touchstart'].forEach(evt => {
+      bubble.addEventListener(evt, () => teaser.classList.remove('show'), { once: true });
+    });
+
+    // poll for botpress API
+    let bpReadyInterval = setInterval(() => {
+      const bp = window.botpressWebChat;
+      if (!bp || !bp.open || !bp.close || !bp.onEvent) return;
+
+      clearInterval(bpReadyInterval);
+
+      // Ensure widget is initialized (some configs auto-init; this is safe either way)
+      try { bp.sendEvent && bp.sendEvent({ type: 'ping' }); } catch(e) {}
+
+      // keep bubble state in sync
+      bp.onEvent(ev => {
+        if (ev.type === 'webchat:opened') bubble.classList.add('open');
+        if (ev.type === 'webchat:closed') bubble.classList.remove('open');
+      });
+
+      // toggle open/close on click
+      let isOpen = false;
+      bubble.addEventListener('click', () => {
+        if (isOpen) { bp.close(); isOpen = false; }
+        else { bp.open(); isOpen = true; }
+      });
+
+      // Optional: open automatically on first visit after a small delay
+      // setTimeout(() => bp.open(), 2200);
+    }, 150);
+  })();
+</script>
+
 
 <style>
   :root{
