@@ -1,431 +1,360 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Swae Systems — Luxury AI Concierge for Med Spas & Clinics</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Swae Systems builds luxury AI concierge systems for med spas & clinics. 24/7 human-like chat that answers FAQs, captures leads, and drives bookings.">
-  <link rel="icon" href="favicon.png">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Luma Aesthetics — Where Luxury Meets Skin</title>
+  <meta name="description" content="Experience cutting-edge beauty treatments tailored to you. Seamless booking, luxury experience."/>
+  <meta name="format-detection" content="telephone=no,email=no,address=no"/>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Luma Aesthetics — Luxury Med Spa"/>
+  <meta property="og:description" content="Concierge-grade treatments with seamless booking."/>
+  <meta property="og:image" content="hero.PNG"/>
+  <meta property="og:type" content="website"/>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Endpoint (kept for form + webhooks) -->
+  <script>
+    window.PILOT_ENDPOINT = "https://script.google.com/macros/s/AKfycbxo6ydLwrbog8qmDbgxlnkgm29WAOTqW8hvlajqkX-qNiQXgOqj_KYIPN_YhSbeacOz1w/exec";
+  </script>
 
   <style>
-    :root{
-      --bg:#0b0b0d;
-      --panel:#121216;
-      --ink:#f6f7f8;
-      --muted:#a5a8b2;
-      --line:rgba(255,255,255,.08);
-      --glass:rgba(255,255,255,.06);
-      --gold:#d4b25f;           /* primary gold */
-      --gold-soft:#f9f0d0;      /* subtle highlight */
-      --radius:18px;
-      --radius-lg:24px;
-      --shadow:0 14px 40px rgba(0,0,0,.4);
-      --maxw:1180px;
-      --speed:280ms;
-    }
-
+    :root{--white:#ffffff;--ink:#111;--muted:#6b6b6b;--bg:#000;--panel:#0f0f0f;
+      --blush:#eeb7c9;--blush-dark:#d596aa;--max:1100px;--radius:16px;--nav-h:68px}
     *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      background:
-        radial-gradient(800px 300px at 70% -10%, rgba(212,178,95,.08), transparent 60%),
-        radial-gradient(1200px 500px at 0% 30%, rgba(212,178,95,.06), transparent 55%),
-        var(--bg);
-      color:var(--ink);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      overflow-x:hidden;
-    }
-
+    html,body{margin:0;background:var(--bg);color:#fff;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial}
+    img{max-width:100%;display:block}
     a{color:inherit;text-decoration:none}
-    .container{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 22px}
-
-    /* NAV */
-    .nav{
-      position:fixed;inset:0 0 auto 0;z-index:40;
-      display:flex;justify-content:center;
-      padding:12px 0; transition:background var(--speed), border-color var(--speed), backdrop-filter var(--speed)
-    }
-    .nav.scrolled{background:rgba(10,10,12,.55);backdrop-filter:saturate(130%) blur(14px);border-bottom:1px solid var(--line)}
-    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;width:100%;max-width:var(--maxw);padding:0 22px}
-    .brand{display:flex;align-items:center;gap:12px}
-    .brand img{height:32px;width:auto;display:block;filter:drop-shadow(0 2px 5px rgba(0,0,0,.5))}
-    .brand .name{font-weight:800;letter-spacing:.3px}
-    .nav-links{display:flex;align-items:center;gap:22px}
-    .nav-links a{opacity:.92}
-    .nav-cta{
-      padding:10px 16px;border-radius:999px;border:1px solid rgba(212,178,95,.55);
-      background:linear-gradient(180deg, rgba(212,178,95,.25), rgba(212,178,95,.12));
-      box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);
-      transition:transform var(--speed), box-shadow var(--speed)
-    }
-    .nav-cta:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(212,178,95,.22)}
-    .burger{display:none;width:46px;height:46px;border-radius:12px;border:1px solid var(--line);background:var(--glass);backdrop-filter:blur(12px);align-items:center;justify-content:center;cursor:pointer}
-    .burger span,.burger::before,.burger::after{content:"";display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all var(--speed)}
-    .burger::before{transform:translateY(-6px)} .burger::after{transform:translateY(6px)}
-    .burger.active span{opacity:0} .burger.active::before{transform:translateY(0) rotate(45deg)} .burger.active::after{transform:translateY(0) rotate(-45deg)}
-
-    .mobile{position:fixed;top:68px;left:0;right:0;z-index:39;display:none}
-    .mobile.open{display:block}
-    .mobile .sheet{margin:0 16px;border:1px solid var(--line);border-radius:16px;background:rgba(16,16,18,.96);backdrop-filter:blur(14px);overflow:hidden}
-    .mobile a{display:block;padding:16px 18px;border-bottom:1px solid var(--line)}
-    .mobile a:last-child{border-bottom:0}
-
-    /* HERO */
-    header.hero{position:relative;min-height:92vh;display:grid;place-items:center;padding-top:92px;isolation:isolate}
-    .hero-canvas{position:absolute;inset:0;z-index:-1}
-    .hero-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:34px;align-items:center}
-    .eyebrow{letter-spacing:.2em;text-transform:uppercase;font-size:12px;color:var(--muted);display:inline-block;margin-bottom:10px}
-    .hero h1{font-size:clamp(34px,6vw,64px);line-height:1.06;margin:0 0 12px;font-weight:900;letter-spacing:-.5px}
-    .hero h1 .gold{color:var(--gold)}
-    .hero p{color:#d6d7dc;max-width:60ch;margin:0 0 22px}
-    .badge-row{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 24px}
-    .badge{font-size:12.5px;color:#111;padding:8px 12px;border-radius:999px;background:var(--gold);border:1px solid rgba(0,0,0,.25)}
-    .cta-row{display:flex;gap:14px;flex-wrap:wrap}
-    .btn{
-      display:inline-flex;align-items:center;gap:10px;padding:14px 18px;border-radius:14px;border:1px solid var(--line);
-      background:linear-gradient(180deg, #17171b, #111114);box-shadow:0 10px 24px rgba(0,0,0,.35);
-      transition:transform var(--speed), box-shadow var(--speed), border var(--speed)
-    }
-    .btn:hover{transform:translateY(-2px);box-shadow:0 18px 44px rgba(0,0,0,.45);border-color:rgba(255,255,255,.14)}
-    .btn-gold{background:linear-gradient(180deg, rgba(212,178,95,.35), rgba(212,178,95,.18));border-color:rgba(212,178,95,.6)}
-    .hero-visual{position:relative;border-radius:22px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));box-shadow:var(--shadow)}
-    .hero-visual img{display:block;width:100%;height:auto}
-    .glow{position:absolute;inset:auto auto -80px -80px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle at 50% 50%, rgba(212,178,95,.35), transparent 60%);filter:blur(40px);pointer-events:none}
-
-    section{padding:86px 0;border-top:1px solid var(--line)}
-    h2{font-size:clamp(26px,4.6vw,44px);margin:0 0 10px}
-    .sub{color:#d2d4da;max-width:70ch;margin:0 auto 22px;text-wrap:balance}
-
-    /* GRID CARDS */
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .card{background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:0 8px 24px rgba(0,0,0,.28)}
-    .card h3{margin:0 0 6px}
-    .card p{margin:0;color:#c9cbd3}
-    .icon{width:42px;height:42px;border-radius:10px;display:grid;place-items:center;margin-bottom:12px;background:linear-gradient(180deg, rgba(212,178,95,.24), rgba(212,178,95,.12));border:1px solid rgba(212,178,95,.45);color:#111;font-weight:700}
-
-    /* DEMO SPLIT */
-    .demo{display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:center}
-    .panel{border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;background:#0f0f12;box-shadow:var(--shadow)}
-    .panel img{display:block;width:100%;height:auto}
-
-    /* PRICING */
-    .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .tier{border:1px solid var(--line);border-radius:var(--radius-lg);padding:26px;background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));display:flex;flex-direction:column}
-    .tier.pop{background:linear-gradient(180deg, rgba(212,178,95,.14), rgba(212,178,95,.04));border-color:rgba(212,178,95,.45);box-shadow:0 24px 60px rgba(212,178,95,.14)}
-    .price{font-size:34px;font-weight:900;margin:8px 0 4px}
-    .per{color:var(--muted);font-size:13px}
-    .feat{margin:14px 0 18px;padding:0;list-style:none}
-    .feat li{display:flex;gap:10px;margin:10px 0}
-    .check{flex:0 0 18px;margin-top:2px}
-
-    /* TESTIMONIAL SLIDER (text-only) */
-    .slider-wrap{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:var(--radius-lg);background:rgba(255,255,255,.02)}
-    .slider{display:flex;gap:16px;overflow:auto;scroll-snap-type:x mandatory;padding:18px}
-    .slide{min-width:320px;max-width:420px;scroll-snap-align:center;border:1px solid var(--line);border-radius:16px;padding:18px;background:#101015}
-    .stars{color:#ffd36e;letter-spacing:2px;margin-bottom:10px}
-    .who{color:#c9cbd3;font-size:14px;margin-top:8px}
-
-    /* CTA */
-    .cta{ text-align:center; border:1px solid var(--line); border-radius:var(--radius-lg); padding:38px;
-      background:
-        radial-gradient(600px 120px at 50% 0%, rgba(212,178,95,.18), transparent 50%),
-        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
-      box-shadow:var(--shadow);
-    }
-
-    /* FOOTER */
-    footer{padding:40px 0;color:#a7a9b1}
-    .foot{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:22px}
-    .foot .mini{display:flex;align-items:center;gap:10px}
-
-    /* RESPONSIVE */
-    @media (max-width:1040px){ .hero-inner,.demo{grid-template-columns:1fr} .hero-visual{order:-1} }
-    @media (max-width:900px){ .grid-3,.pricing{grid-template-columns:1fr 1fr} }
-    @media (max-width:680px){
-      .nav-links{display:none}
-      .burger{display:flex}
-      .grid-3,.pricing{grid-template-columns:1fr}
-      .slide{min-width:84%}
-    }
+    .container{max-width:var(--max);margin:0 auto;padding:0 18px}
+    .topbar{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nav-h);
+      background:linear-gradient(180deg,rgba(10,10,10,.85),rgba(10,10,10,.65));
+      backdrop-filter:blur(14px) saturate(150%);-webkit-backdrop-filter:blur(14px) saturate(150%);
+      border-bottom:1px solid rgba(255,255,255,.08)}
+    .topbar__inner{max-width:var(--max);margin:0 auto;height:100%;display:flex;align-items:center;justify-content:space-between;padding:0 18px}
+    .brand{font-family:"Playfair Display",serif;font-size:24px;letter-spacing:.04em}
+    .links{display:flex;gap:24px;align-items:center}
+    .links a{padding:8px 12px;border-radius:12px;border:1px solid transparent;transition:.2s}
+    .links a:hover{background:rgba(255,255,255,.08);color:var(--blush);border-color:rgba(255,255,255,.12)}
+    .burger{display:none;width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);align-items:center;justify-content:center}
+    .burger span{width:18px;height:2px;background:#fff;position:relative;display:block}
+    .burger span::before,.burger span::after{content:"";position:absolute;left:0;width:18px;height:2px;background:#fff}
+    .burger span::before{top:-6px}.burger span::after{top:6px}
+    @media (max-width:960px){.links{display:none}.burger{display:flex}}
+    body{padding-top:var(--nav-h)}
+    .drawer{position:fixed;top:calc(var(--nav-h) + 8px);left:12px;right:12px;background:rgba(20,20,20,.92);
+      backdrop-filter:blur(16px) saturate(150%);-webkit-backdrop-filter:blur(16px) saturate(150%);
+      border:1px solid rgba(255,255,255,.12);box-shadow:0 18px 60px rgba(0,0,0,.45);
+      border-radius:18px;overflow:hidden;display:none;z-index:110;opacity:0;transform:translateY(-10px) scale(.98);transition:.2s}
+    .drawer.open{display:block;opacity:1;transform:translateY(0) scale(1)}
+    .drawer a{display:block;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.08)}
+    .drawer a:last-child{border-bottom:0}
+    .drawer a:hover{background:rgba(255,255,255,.06);color:var(--blush)}
+    .hero{padding-top:0;position:relative}
+    .hero__wrap{max-width:var(--max);margin:0 auto;border-radius:var(--radius);overflow:hidden}
+    .hero__img{position:relative;height:88vh;min-height:640px;background:#000 url('HERO.PNG') center/cover no-repeat}
+    .hero__veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.28),rgba(0,0,0,.70))}
+    .hero__copy{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 24px}
+    .hero__inner{max-width:760px}
+    .title{font-family:"Playfair Display",serif;font-weight:700;line-height:1.04;font-size:clamp(34px,6.2vw,68px);margin:0 0 10px;text-shadow:0 2px 18px rgba(0,0,0,.45)}
+    .sub{color:#eee;font-size:clamp(15px,2.2vw,20px);text-shadow:0 1px 12px rgba(0,0,0,.35)}
+    .cta{margin-top:22px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .btn{display:inline-block;padding:14px 22px;border-radius:999px;border:0;font-weight:700;cursor:pointer;transition:.2s}
+    .btn--blush{background:var(--blush);color:#111;box-shadow:0 10px 28px rgba(238,183,201,.25)}
+    .btn--blush:hover,.btn--ghost:hover{transform:translateY(-2px)}
+    .btn--ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.55)}
+    section{padding:80px 0;border-top:1px solid rgba(255,255,255,.06)}
+    .kicker{letter-spacing:.22em;text-transform:uppercase;color:var(--blush);font-size:.8rem;font-weight:700}
+    h2{font-family:"Playfair Display",serif;font-size:clamp(28px,3.2vw,42px);margin:8px 0 10px}
+    p{color:#e8e8e8}
+    .grid{display:grid;gap:18px}
+    .grid--3{grid-template-columns:repeat(3,1fr)}
+    .grid--2{grid-template-columns:repeat(2,1fr)}
+    @media(max-width:900px){.grid--3,.grid--2{grid-template-columns:1fr}}
+    .card{background:linear-gradient(180deg,#121212,#0e0e0e);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:22px;transition:border-color .2s}
+    .card:hover{border-color:rgba(238,183,201,.55)}
+    .thumb{height:200px;border-radius:12px;background:#0f0f0f center/cover no-repeat;margin-bottom:12px}
+    input,select,textarea{width:100%;background:#111;color:#fff;border:1px solid #2a2a2a;border-radius:12px;padding:14px;font-size:15px;outline:none;transition:.2s}
+    input::placeholder,textarea::placeholder{color:#999}
+    select{background-color:#111;color:#fff;background-image:url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23ffffff' d='M5.5 7.5l4.5 4.5 4.5-4.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-size:16px;padding-right:38px}
+    input:focus,select:focus,textarea:focus{border-color:var(--blush);box-shadow:0 0 0 3px rgba(238,183,201,.25)}
+    .snap{display:grid;grid-auto-flow:column;gap:14px;overflow:auto;scroll-snap-type:x mandatory;padding-bottom:6px;scroll-behavior:smooth}
+    .snap::-webkit-scrollbar{height:6px}.snap::-webkit-scrollbar-thumb{background:#222;border-radius:999px}
+    .quote{min-width:360px;max-width:420px;scroll-snap-align:start}
+    .stars{color:var(--blush);letter-spacing:2px}
+    footer{padding:70px 0}.foot{display:grid;gap:18px;grid-template-columns:2fr 1fr 1fr}
+    @media(max-width:900px){.foot{grid-template-columns:1fr}}
+    .small{color:#bfbfbf;font-size:13px}.muted{color:#999}
   </style>
 </head>
 <body>
-
-  <!-- NAV -->
-  <nav class="nav" id="nav">
-    <div class="nav-inner">
-      <div class="brand">
-        <img src="swae-logo-gold.svg" alt="Swae Systems" width="140" height="34">
-        <span class="name">Swae Systems</span>
-      </div>
-      <div class="nav-links">
-        <a href="#features">Features</a>
-        <a href="#demo">Demo</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#proof">Proof</a>
-        <a href="#contact" class="nav-cta">Book a Demo</a>
-      </div>
+  <div class="topbar">
+    <div class="topbar__inner">
+      <div class="brand">Luma Aesthetics</div>
+      <nav class="links">
+        <a href="#services">Treatments</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#book">Book</a>
+      </nav>
       <button class="burger" id="burger" aria-label="Open menu"><span></span></button>
     </div>
+  </div>
+  <nav class="drawer" id="drawer">
+    <a href="#services">Treatments</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#book">Book</a>
   </nav>
 
-  <div class="mobile" id="mobile">
-    <div class="sheet">
-      <a href="#features">Features</a>
-      <a href="#demo">Demo</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#proof">Proof</a>
-      <a href="#contact">Book a Demo</a>
-    </div>
-  </div>
-
-  <!-- HERO -->
   <header class="hero">
-    <canvas class="hero-canvas" id="fx"></canvas>
-    <div class="container hero-inner">
-      <div>
-        <div class="eyebrow">Med Spas & Clinics</div>
-        <h1><span class="gold">Luxury AI Concierge</span> that books clients for you — 24/7.</h1>
-        <p>Human-like front-desk chat trained on your treatments, policies, and tone. It answers FAQs instantly, captures every lead, and routes clients straight into booking — even at night and on weekends.</p>
-        <div class="badge-row">
-          <span class="badge">24/7 Instant Replies</span>
-          <span class="badge">Lead Capture + Follow-ups</span>
-          <span class="badge">HIPAA-aware Intake</span>
-          <span class="badge">Upsells & Bundles</span>
+    <div class="hero__wrap">
+      <div class="hero__img">
+        <div class="hero__veil"></div>
+        <div class="hero__copy">
+          <div class="hero__inner">
+            <h1 class="title">Where Luxury Meets Skin</h1>
+            <p class="sub">Experience cutting-edge beauty treatments tailored to you.</p>
+            <div class="cta">
+              <a class="btn btn--blush" href="#book">Book Now</a>
+              <a class="btn btn--ghost" href="#services">Explore Treatments</a>
+            </div>
+          </div>
         </div>
-        <div class="cta-row">
-          <a href="#contact" class="btn btn-gold">Book a 15-min Demo</a>
-          <a href="#demo" class="btn">Preview the Experience</a>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <img src="hero-medspa-gold.jpg" alt="Cinematic med spa interface preview" width="960" height="700" loading="eager">
-        <div class="glow"></div>
       </div>
     </div>
   </header>
 
-  <!-- FEATURES -->
-  <section id="features">
+  <section id="services">
     <div class="container">
-      <div style="text-align:center;margin-bottom:16px">
-        <div class="eyebrow">Why Swae</div>
-        <h2>Proactive, on-brand, and built to convert.</h2>
-        <p class="sub">A booking widget waits. Your concierge engages, answers objections, captures leads, and guides clients into the right treatment — while staff focus on in-clinic care.</p>
-      </div>
-
-      <div class="grid-3">
-        <article class="card">
-          <div class="icon">💬</div>
-          <h3>Human-like answers</h3>
-          <p>Trained on your service menu, contraindications, and clinic voice. Sounds like a real concierge — not a script.</p>
-        </article>
-        <article class="card">
-          <div class="icon">📅</div>
-          <h3>Frictionless bookings</h3>
-          <p>Direct calendar handoff or in-chat intake with internal alerts. Drop-off recovery via SMS/email.</p>
-        </article>
-        <article class="card">
-          <div class="icon">💎</div>
-          <h3>Luxury upsells</h3>
-          <p>Smart prompts for popular add-ons (e.g., Botox + Lip Flip) to lift average order value without feeling pushy.</p>
-        </article>
+      <div class="kicker">Treatments</div>
+      <h2>Curated Care, Crafted for Results</h2>
+      <div class="grid grid--3" style="margin-top:18px">
+        <a class="card" href="#book">
+          <div class="thumb" style="background-image:url('botox.PNG')"></div>
+          <h3>Botox & Fillers</h3>
+          <p class="small">Targeted smoothing and subtle volume for a youthful glow.</p>
+        </a>
+        <a class="card" href="#book">
+          <div class="thumb" style="background-image:url('laser.PNG')"></div>
+          <h3>Laser Hair Removal</h3>
+          <p class="small">Long-term reduction with minimal downtime.</p>
+        </a>
+        <a class="card" href="#book">
+          <div class="thumb" style="background-image:url('facials.PNG')"></div>
+          <h3>Facials & Skincare</h3>
+          <p class="small">Clinically-designed facials for clarity, tone, and texture.</p>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- DEMO -->
-  <section id="demo">
-    <div class="container demo">
-      <div>
-        <div class="eyebrow">See it in motion</div>
-        <h2>Cinematic concierge — built for med spas.</h2>
-        <p class="sub">Clients ask. It answers. Confirms eligibility, gathers details, and books. If they bounce, it follows up. That’s how you stop losing leads after hours.</p>
-        <div class="cta-row">
-          <a href="#contact" class="btn btn-gold">Get Your Clinic Version</a>
-          <a href="#pricing" class="btn">View Pricing</a>
-        </div>
-      </div>
-      <div class="panel">
-        <img src="demo-chat-gold.png" alt="Chat concierge demo preview" width="1000" height="680" loading="lazy">
-      </div>
-    </div>
-  </section>
-
-  <!-- PROOF / TESTIMONIALS (text-only, no photos) -->
-  <section id="proof">
+  <section id="testimonials">
     <div class="container">
-      <div style="text-align:center;margin-bottom:16px">
-        <div class="eyebrow">Social proof</div>
-        <h2>Owners are seeing the difference</h2>
-        <p class="sub">Replace these with your real wins. Slider is text-only to keep it luxury and clean.</p>
-      </div>
-
-      <div class="slider-wrap">
-        <div class="slider" id="slider">
-          <article class="slide">
-            <div class="stars">★★★★★</div>
-            <p>“Booked 7 Botox clients in week one. After-hours leads don’t disappear anymore.”</p>
-            <div class="who">— Founder, Beverly Hills Aesthetics</div>
-          </article>
-          <article class="slide">
-            <div class="stars">★★★★★</div>
-            <p>“Feels like texting a concierge. Front desk time freed up immediately.”</p>
-            <div class="who">— Director, Miami Med Spa</div>
-          </article>
-          <article class="slide">
-            <div class="stars">★★★★★</div>
-            <p>“We added bundle prompts; average ticket is up ~18%.”</p>
-            <div class="who">— COO, Palm Desert Aesthetics</div>
-          </article>
-        </div>
+      <div class="kicker">Testimonials</div>
+      <h2>Five-Star Experiences</h2>
+      <div class="snap">
+        <div class="card quote"><div class="stars">★★★★★</div><p>“I booked at midnight and got confirmed first thing. Luma is elite.”</p><p class="small">— A.M.</p></div>
+        <div class="card quote"><div class="stars">★★★★★</div><p>“Luxury vibe, zero pressure, results on point. I’m obsessed.”</p><p class="small">— K.R.</p></div>
+        <div class="card quote"><div class="stars">★★★★★</div><p>“Fast intake, stunning space, and a team that really listens.”</p><p class="small">— D.S.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- PRICING -->
-  <section id="pricing">
+  <section id="book">
     <div class="container">
-      <div style="text-align:center;margin-bottom:16px">
-        <div class="eyebrow">Simple, ROI-first pricing</div>
-        <h2>Pick your growth plan</h2>
-        <p class="sub">If this books just 2 clients a month, it pays for itself. Start lean, upgrade anytime.</p>
-      </div>
-
-      <div class="pricing">
-        <div class="tier">
-          <div class="eyebrow">Starter</div>
-          <div class="price">$750–$1,200</div>
-          <div class="per">one-time setup • $297–$497/mo</div>
-          <ul class="feat">
-            <li><span class="check">✔</span> AI concierge trained on your menu</li>
-            <li><span class="check">✔</span> Booking handoff + lead capture</li>
-            <li><span class="check">✔</span> Top FAQs (5–8)</li>
-          </ul>
-          <a href="#contact" class="btn">Start with Starter</a>
+      <div class="kicker">Book Now</div>
+      <h2>Reserve Your Visit</h2>
+      <div class="grid grid--2" style="margin-top:18px">
+        <div class="card">
+          <form id="bookingForm" style="display:grid;gap:14px">
+            <div class="grid grid--2"><input name="name" placeholder="Full Name" required/><input name="phone" placeholder="Phone" required/></div>
+            <div class="grid grid--2"><input type="email" name="email" placeholder="Email" required/><select name="service" required>
+              <option value="" disabled selected>Select Service</option>
+              <option>Botox & Fillers</option><option>Laser Hair Removal</option><option>Facials & Skincare</option>
+            </select></div>
+            <div class="grid grid--2"><input type="date" name="date" required/><input type="time" name="time" required/></div>
+            <textarea rows="4" name="notes" placeholder="Notes (optional)"></textarea>
+            <button class="btn btn--blush" type="submit">Submit Request</button>
+            <div id="formMsg" class="small muted"></div>
+          </form>
         </div>
-
-        <div class="tier pop">
-          <div class="eyebrow">Growth</div>
-          <div class="price">$1,500–$2,500</div>
-          <div class="per">one-time setup • $497–$797/mo</div>
-          <ul class="feat">
-            <li><span class="check">✔</span> Drop-off SMS/email follow-ups</li>
-            <li><span class="check">✔</span> Upsell prompts (addons & bundles)</li>
-            <li><span class="check">✔</span> Weekly performance report</li>
-          </ul>
-          <a href="#contact" class="btn btn-gold">Most Popular</a>
-        </div>
-
-        <div class="tier">
-          <div class="eyebrow">Elite</div>
-          <div class="price">$3,000+</div>
-          <div class="per">one-time setup • $997–$1,497/mo</div>
-          <ul class="feat">
-            <li><span class="check">✔</span> Multi-location + VIP nurture</li>
-            <li><span class="check">✔</span> Advanced CRM integrations</li>
-            <li><span class="check">✔</span> Conversion dashboard</li>
-          </ul>
-          <a href="#contact" class="btn">Scale with Elite</a>
+        <div class="card" style="padding:0;overflow:hidden">
+          <div style="height:100%;min-height:340px;background:#0f0f0f url('studio.PNG') center/cover no-repeat;"></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section id="contact">
-    <div class="container">
-      <div class="cta">
-        <div class="eyebrow">Ready when you are</div>
-        <h2 style="margin:8px 0 10px">Book a 15-minute demo</h2>
-        <p class="sub" style="margin-bottom:22px">We’ll show you a live concierge, map it to your treatments, and lay out a simple rollout plan. If you’re not excited in 15 minutes, we’re not the right fit — no pressure.</p>
-        <div class="cta-row" style="justify-content:center">
-          <a href="https://calendly.com/" class="btn btn-gold">Pick a Time</a>
-          <a href="mailto:hello@swaesystems.com" class="btn">Email Us</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
   <footer>
     <div class="container foot">
-      <div class="mini">
-        <img src="swae-logo-gold.svg" alt="Swae Systems" width="26" height="26">
-        <span>© <span id="yr"></span> Swae Systems · Med Spa & Clinic AI</span>
-      </div>
-      <div class="mini">
-        <a href="#features">Features</a> ·
-        <a href="#pricing">Pricing</a> ·
-        <a href="#proof">Proof</a> ·
-        <a href="#contact">Contact</a>
-      </div>
+      <div><div class="kicker">Luma Aesthetics</div><h3 style="font-family:Playfair Display,serif;margin:8px 0 10px">Where luxury meets skin.</h3>
+        <p class="small">123 Rose Ave, Suite 100 • City, ST 90000<br/>Mon–Sat 9am–7pm</p></div>
+      <div><div class="kicker">Contact</div><p class="small">hello@luma.com • (000) 000-0000</p></div>
+      <div><div class="kicker">Explore</div><p class="small"><a href="#services">Treatments</a> • <a href="#testimonials">Reviews</a> • <a href="#book">Book</a></p></div>
     </div>
   </footer>
 
-  <!-- OPTIONAL: Chat widget placeholder -->
-  <!-- <script src="https://your-chat-provider/widget.js" defer></script> -->
-  <!-- <script>initConcierge({ clinic:"Your Med Spa", themeColor:"#d4b25f" });</script> -->
-
   <script>
-    // Footer year
-    document.getElementById('yr').textContent = new Date().getFullYear();
+    // Mobile nav
+    const burger=document.getElementById('burger'),drawer=document.getElementById('drawer');
+    burger?.addEventListener('click',()=>drawer.classList.toggle('open'));
+    drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>drawer.classList.remove('open')));
+    window.addEventListener('scroll',()=>drawer.classList.remove('open'));
 
-    // Nav scroll + burger
-    const nav = document.getElementById('nav');
-    const burger = document.getElementById('burger');
-    const mobile = document.getElementById('mobile');
-    const toggleMobile = ()=>{ burger.classList.toggle('active'); mobile.classList.toggle('open'); };
-    burger.addEventListener('click', toggleMobile);
-    window.addEventListener('scroll', ()=>{ nav.classList.toggle('scrolled', window.scrollY>10); });
-    document.querySelectorAll('.mobile a').forEach(a=>a.addEventListener('click', toggleMobile));
-
-    // Testimonials slider drag + vertical wheel to horizontal
-    const slider = document.getElementById('slider');
-    if(slider){
-      let isDown=false,startX,scrollLeft;
-      slider.addEventListener('mousedown',e=>{isDown=true;startX=e.pageX-slider.offsetLeft;scrollLeft=slider.scrollLeft;});
-      slider.addEventListener('mouseleave',()=>isDown=false);
-      slider.addEventListener('mouseup',()=>isDown=false);
-      slider.addEventListener('mousemove',e=>{if(!isDown)return;e.preventDefault();const x=e.pageX-slider.offsetLeft;slider.scrollLeft=scrollLeft-(x-startX)*1.2;});
-      slider.addEventListener('wheel',e=>{if(Math.abs(e.deltaY)>Math.abs(e.deltaX)){slider.scrollLeft+=e.deltaY; e.preventDefault();}}, {passive:false});
-    }
-
-    // Subtle gold particle links in hero
-    const canvas=document.getElementById('fx'), ctx=canvas.getContext('2d');
-    let w,h,pr=window.devicePixelRatio||1, dots=[];
-    function size(){ w=canvas.clientWidth; h=canvas.clientHeight; canvas.width=w*pr; canvas.height=h*pr; ctx.setTransform(pr,0,0,pr,0,0); }
-    function Dot(){ this.x=Math.random()*w; this.y=Math.random()*h; this.vx=(Math.random()-.5)*.25; this.vy=(Math.random()-.5)*.25; this.r=Math.random()*1.6+0.6; }
-    function init(n=110){ dots=[]; for(let i=0;i<n;i++) dots.push(new Dot()); }
-    function step(){
-      ctx.clearRect(0,0,w,h);
-      for(const p of dots){
-        p.x+=p.vx; p.y+=p.vy;
-        if(p.x<-50) p.x=w+50; if(p.x>w+50) p.x=-50;
-        if(p.y<-50) p.y=h+50; if(p.y>h+50) p.y=-50;
-      }
-      for(let i=0;i<dots.length;i++){
-        for(let j=i+1;j<dots.length;j++){
-          const a=dots[i], b=dots[j], dx=a.x-b.x, dy=a.y-b.y, d=Math.hypot(dx,dy);
-          if(d<110){
-            const alpha=1-(d/110);
-            ctx.strokeStyle=`rgba(212,178,95,${alpha*.22})`;
-            ctx.lineWidth=1;
-            ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
-          }
-        }
-      }
-      for(const p of dots){
-        ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-        ctx.fillStyle='rgba(212,178,95,.65)'; ctx.fill();
-      }
-      requestAnimationFrame(step);
-    }
-    function start(){ size(); init(); step(); }
-    start(); window.addEventListener('resize', size);
+    // Booking form -> Apps Script endpoint
+    document.getElementById('bookingForm').addEventListener('submit',async e=>{
+      e.preventDefault();
+      const form=e.target,msg=document.getElementById('formMsg');
+      const fd=new FormData(form);
+      fd.append('source','website-form');
+      fd.append('page_url',location.href);
+      msg.textContent="Sending…";
+      try{
+        const res=await fetch(window.PILOT_ENDPOINT,{method:'POST',body:fd});
+        const text=await res.text();
+        let ok=false;try{ok=JSON.parse(text).ok===true}catch(_){ok=/ok/i.test(text);}
+        if(ok){msg.textContent="✅ Request received — we’ll confirm shortly.";form.reset();}
+        else{msg.textContent="⚠️ Server error. Check deployment access.";console.error(text);}
+      }catch(err){msg.textContent="⚠️ Network error. Check Console.";console.error(err);}
+    });
   </script>
+
+ <!-- LUXURY CHAT BUBBLE (iframe launcher) -->
+<div id="lux-chat">
+  <!-- Bubble & teaser -->
+  <div class="lux-teaser" id="luxTeaser">💬 Chat with our concierge — <b>Hablamos español</b></div>
+  <button class="lux-bubble" id="luxBubble" aria-label="Open chat">
+    <img src="l-logo.PNG" alt="Luma Concierge" />
+  </button>
+
+  <!-- Panel (holds the iframe) -->
+  <div class="lux-panel" id="luxPanel" aria-hidden="true" role="dialog" aria-label="Concierge chat">
+    <div class="lux-header">
+      <div class="lux-title">Luma Concierge</div>
+      <button class="lux-close" id="luxClose" aria-label="Close chat">×</button>
+    </div>
+    <iframe
+      id="luxFrame"
+      title="Luma Concierge"
+      src="https://cdn.botpress.cloud/webchat/v3.3/shareable.html?configUrl=https://files.bpcontent.cloud/2025/10/09/17/20251009173229-URGYDLZV.json"
+      loading="lazy"
+      referrerpolicy="no-referrer"
+    ></iframe>
+  </div>
+</div>
+
+<style>
+  :root{
+    --lux-pink:#FF4FA0;     /* primary blush/pink */
+    --lux-pink-2:#eeb7c9;   /* soft blush accents */
+    --lux-ink:#0c0c0c;      /* near black */
+    --lux-ui:#111;          /* panel bg */
+    --lux-text:#fff;
+  }
+  #lux-chat{ position:fixed; right:20px; bottom:20px; z-index:9999;
+             display:flex; flex-direction:column; align-items:flex-end; gap:10px; }
+
+  /* Teaser above bubble */
+  .lux-teaser{
+    background:#fff; color:#111; font:600 14px/1.2 Inter,system-ui;
+    padding:7px 12px; border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,.18);
+    opacity:0; transform:translateY(6px); pointer-events:none; transition:.35s ease;
+  }
+  .lux-teaser.show{ opacity:1; transform:translateY(0); }
+
+  /* Circle bubble button */
+  .lux-bubble{
+    width:64px; height:64px; border-radius:50%; border:0; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; background:var(--lux-pink);
+    box-shadow:0 10px 28px rgba(0,0,0,.45); transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .lux-bubble:hover{ transform:translateY(-2px); box-shadow:0 14px 34px rgba(0,0,0,.5); }
+  .lux-bubble img{ width:32px; height:32px; display:block; }
+
+  /* Panel that expands from bubble */
+  .lux-panel{
+    position:fixed; right:20px; bottom:100px; width:380px; height:560px;
+    background:linear-gradient(180deg,#141414,#0f0f0f); color:var(--lux-text);
+    border-radius:18px; overflow:hidden; border:1px solid rgba(255,255,255,.08);
+    box-shadow:0 20px 50px rgba(0,0,0,.55);
+    transform:scale(.96) translateY(8px); opacity:0; pointer-events:none;
+    transition:opacity .25s ease, transform .25s ease;
+  }
+  .lux-panel.open{ opacity:1; transform:scale(1) translateY(0); pointer-events:auto; }
+
+  .lux-header{
+    height:48px; display:flex; align-items:center; justify-content:space-between;
+    padding:0 12px; background:#111; border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .lux-title{ font:600 14px/1 Inter,system-ui; letter-spacing:.02em }
+  .lux-close{ width:36px; height:36px; border-radius:10px; background:#1a1a1a; color:#fff;
+              border:1px solid rgba(255,255,255,.12); cursor:pointer; font-size:20px; line-height:1; }
+  .lux-close:hover{ background:#222; }
+
+  #luxFrame{ width:100%; height:calc(100% - 48px); border:0; background:#000; }
+
+  /* Mobile sizes */
+  @media (max-width: 520px){
+    .lux-panel{ right:12px; bottom:90px; width:92vw; height:74vh; border-radius:16px; }
+    .lux-bubble{ width:58px; height:58px; }
+    #lux-chat{ right:12px; bottom:14px; }
+  }
+
+  /* Fade bubble while scrolling (luxury feel) */
+  .lux-hidden{ opacity:.25; transition:opacity .25s ease; }
+  .lux-hidden:hover{ opacity:1; }
+
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce){
+    .lux-panel, .lux-teaser{ transition:none; }
+    .lux-bubble{ transition:none; }
+  }
+</style>
+
+<script>
+  (function(){
+    const bubble = document.getElementById('luxBubble');
+    const panel  = document.getElementById('luxPanel');
+    const close  = document.getElementById('luxClose');
+    const teaser = document.getElementById('luxTeaser');
+    const chat   = document.getElementById('lux-chat');
+    let open = false;
+
+    // Show teaser briefly on load
+    setTimeout(()=>teaser.classList.add('show'), 600);
+    setTimeout(()=>teaser.classList.remove('show'), 4600);
+
+    function toggle(openNow){
+      open = (openNow != null) ? openNow : !open;
+      panel.classList.toggle('open', open);
+      panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+      if (open) teaser.classList.remove('show');
+    }
+    bubble.addEventListener('click', ()=>toggle());
+    close.addEventListener('click', ()=>toggle(false));
+
+    // Close when clicking outside panel (but not on bubble)
+    document.addEventListener('click', (e)=>{
+      if (!open) return;
+      const within = panel.contains(e.target) || bubble.contains(e.target) || chat.contains(e.target);
+      if (!within) toggle(false);
+    });
+    // ESC to close
+    document.addEventListener('keydown', (e)=>{ if (e.key==='Escape') toggle(false); });
+
+    // Fade bubble while scrolling down; show when idle/up
+    let lastY = window.scrollY, hideTimer;
+    window.addEventListener('scroll', ()=>{
+      const down = window.scrollY > lastY;
+      lastY = window.scrollY;
+      bubble.classList.toggle('lux-hidden', down);
+      clearTimeout(hideTimer);
+      hideTimer = setTimeout(()=>bubble.classList.remove('lux-hidden'), 350);
+    }, {passive:true});
+  })();
+</script>
+  <!-- (old v0 webchat removed) -->
 </body>
 </html>
