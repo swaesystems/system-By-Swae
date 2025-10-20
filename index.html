@@ -221,57 +221,48 @@
     });
   </script>
 
-<!-- LUXURY CHAT LAUNCHER -->
+<!-- LUXURY CHAT LAUNCHER (PATCHED) -->
 <style>
-  /* Hide Botpress' default round launcher */
-  .bpw-floating-button,
-  .bpw-launcher { display: none !important; }
+  /* Hide Botpress default launcher */
+  .bpw-floating-button, .bpw-launcher { display: none !important; }
 
-  /* Container */
-  #lux-chat { position: fixed; right: 22px; bottom: 22px; z-index: 99999; }
+  /* Container always on top */
+  #lux-chat { position: fixed; right: 22px; bottom: 22px; z-index: 2147483647; }
 
   /* Teaser pill */
-  #luxTeaser {
-    position: absolute; right: 86px; bottom: 12px;
-    padding: 10px 14px; border-radius: 999px;
+  #luxTeaser{
+    position:absolute; right:86px; bottom:12px;
+    padding:10px 14px; border-radius:999px;
     background: rgba(255,255,255,0.06);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.12);
-    color: #fff; font: 500 14px/1.2 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
-    box-shadow: 0 10px 24px rgba(0,0,0,.35);
-    opacity: 0; transform: translateX(8px);
-    transition: all .4s ease;
-    pointer-events: none; /* only visual */
+    border:1px solid rgba(255,255,255,0.12);
+    color:#fff; font:500 14px/1.2 system-ui,-apple-system,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;
+    box-shadow:0 10px 24px rgba(0,0,0,.35);
+    opacity:0; transform:translateX(8px);
+    transition:all .4s ease;
+    pointer-events:none; /* visual only */
   }
-  #luxTeaser.show { opacity: 1; transform: translateX(0); }
+  #luxTeaser.show{ opacity:1; transform:translateX(0); }
 
   /* Round bubble */
-  #luxBubble {
-    width: 64px; height: 64px; border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.16);
+  #luxBubble{
+    position: relative; /* keeps ::after ring positioned */
+    width:64px; height:64px; border-radius:50%;
+    border:1px solid rgba(255,255,255,0.16);
     background: radial-gradient(120% 120% at 30% 20%, #ff8ecb 0%, #ff5bb3 50%, #c43fff 100%);
-    box-shadow: 0 12px 30px rgba(196, 63, 255, .35), inset 0 0 22px rgba(255,255,255,.18);
-    display: grid; place-items: center; cursor: pointer;
+    box-shadow:0 12px 30px rgba(196, 63, 255, .35), inset 0 0 22px rgba(255,255,255,.18);
+    display:grid; place-items:center; cursor:pointer;
     transition: transform .15s ease, box-shadow .3s ease, filter .3s ease;
   }
-  #luxBubble:hover { transform: translateY(-2px); filter: brightness(1.06); }
-  #luxBubble:active { transform: translateY(0); }
-
-  /* Logo inside bubble */
-  #luxBubble img {
-    width: 28px; height: 28px; object-fit: contain; border-radius: 6px;
-    filter: drop-shadow(0 2px 6px rgba(0,0,0,.3));
-  }
-
-  /* Small “typing glow” ring */
+  #luxBubble:hover{ transform: translateY(-2px); filter:brightness(1.06); }
+  #luxBubble:active{ transform: translateY(0); }
+  #luxBubble img{ width:28px; height:28px; object-fit:contain; border-radius:6px; filter:drop-shadow(0 2px 6px rgba(0,0,0,.3)); }
   #luxBubble::after{
     content:""; position:absolute; inset:-3px; border-radius:50%;
     background: conic-gradient(from 0deg, rgba(255,255,255,.2), rgba(255,255,255,0) 40%, rgba(255,255,255,.2) 100%);
-    opacity:.25; filter: blur(6px);
+    opacity:.25; filter: blur(6px); pointer-events:none;
   }
-
-  /* Optional mini indicator when chat open */
-  #luxBubble.open { box-shadow: 0 12px 34px rgba(255, 215, 0, .35), inset 0 0 28px rgba(255,255,255,.22); }
+  #luxBubble.open{ box-shadow:0 12px 34px rgba(255,215,0,.35), inset 0 0 28px rgba(255,255,255,.22); }
 </style>
 
 <div id="lux-chat" aria-live="polite">
@@ -281,51 +272,56 @@
   </button>
 </div>
 
-<!-- Botpress Webchat (stable, no iframe) -->
+<!-- Botpress (keep your same two scripts) -->
 <script src="https://cdn.botpress.cloud/webchat/v3.3/inject.js" defer></script>
 <script src="https://files.bpcontent.cloud/2025/10/09/17/20251009173228-A9M2AU59.js" defer></script>
 
 <script>
-  // Wait for Botpress to be ready, then wire up our custom launcher
-  (function () {
-    const bubble = document.getElementById('luxBubble');
-    const teaser = document.getElementById('luxTeaser');
+(function(){
+  const bubble = document.getElementById('luxBubble');
+  const teaser = document.getElementById('luxTeaser');
 
-    // Show teaser after a moment
-    setTimeout(() => teaser.classList.add('show'), 1400);
-    // Hide teaser when user hovers/clicks
-    ['mouseenter','click','touchstart'].forEach(evt => {
-      bubble.addEventListener(evt, () => teaser.classList.remove('show'), { once: true });
+  // show teaser after a moment
+  setTimeout(()=>teaser.classList.add('show'), 1200);
+  ['mouseenter','click','touchstart'].forEach(evt=>{
+    bubble.addEventListener(evt, ()=>teaser.classList.remove('show'), { once:true });
+  });
+
+  let wantOpen = false;   // user clicked before widget ready?
+  let isOpen = false;
+
+  function getBP(){ return window.botpressWebChat; }
+
+  function tryWireUp(){
+    const bp = getBP();
+    if(!bp || typeof bp.open!=='function' || typeof bp.close!=='function') return false;
+
+    // Sync bubble state with widget events
+    bp.onEvent && bp.onEvent(ev=>{
+      if(ev.type==='webchat:opened'){ isOpen = true;  bubble.classList.add('open'); }
+      if(ev.type==='webchat:closed'){ isOpen = false; bubble.classList.remove('open'); }
     });
 
-    // poll for botpress API
-    let bpReadyInterval = setInterval(() => {
-      const bp = window.botpressWebChat;
-      if (!bp || !bp.open || !bp.close || !bp.onEvent) return;
+    // If user clicked before ready, honor it now
+    if(wantOpen){ bp.open(); wantOpen = false; }
 
-      clearInterval(bpReadyInterval);
+    // Toggle on click (always call BP directly)
+    bubble.addEventListener('click', ()=>{
+      const bp2 = getBP();
+      if(!bp2 || typeof bp2.open!=='function'){ wantOpen = true; return; }
+      if(isOpen){ bp2.close(); } else { bp2.open(); }
+    });
 
-      // Ensure widget is initialized (some configs auto-init; this is safe either way)
-      try { bp.sendEvent && bp.sendEvent({ type: 'ping' }); } catch(e) {}
+    return true;
+  }
 
-      // keep bubble state in sync
-      bp.onEvent(ev => {
-        if (ev.type === 'webchat:opened') bubble.classList.add('open');
-        if (ev.type === 'webchat:closed') bubble.classList.remove('open');
-      });
-
-      // toggle open/close on click
-      let isOpen = false;
-      bubble.addEventListener('click', () => {
-        if (isOpen) { bp.close(); isOpen = false; }
-        else { bp.open(); isOpen = true; }
-      });
-
-      // Optional: open automatically on first visit after a small delay
-      // setTimeout(() => bp.open(), 2200);
-    }, 150);
-  })();
+  // Keep trying until Botpress is ready
+  const iv = setInterval(()=>{ if(tryWireUp()) clearInterval(iv); }, 120);
+  // Also try once after page fully loaded (safety)
+  window.addEventListener('load', tryWireUp);
+})();
 </script>
+
 
 
 <style>
