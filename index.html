@@ -434,6 +434,19 @@
     }, {passive:true});
   })();
 </script>
-  <!-- (old v0 webchat removed) -->
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+  const bubble = document.getElementById("luxBubble");
+
+  bubble.addEventListener("click", function () {
+    if (window.botpressWebChat && typeof window.botpressWebChat.open === "function") {
+      window.botpressWebChat.open();
+    } else {
+      console.warn("Botpress not ready yet");
+    }
+  });
+});
+</script>
+
 </body>
 </html>
